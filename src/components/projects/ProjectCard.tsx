@@ -6,28 +6,17 @@ const ProjectCard: React.FC<Project> = ({
   id,
   slug,
   thumbnail,
-  logo,
   name,
   description,
   skills,
 }) => {
   return (
     <div className="relative group border rounded-lg overflow-hidden shadow-md">
-      {/* Thumbnail */}
       <img
         src={thumbnail}
         alt={name}
         className="w-full h-48 object-cover"
       />
-
-      {/* Logo */}
-      <img
-        src={logo}
-        alt={`${name} logo`}
-        className="absolute top-4 left-4 w-16 h-16 object-contain"
-      />
-
-      {/* Hidden description on hover */}
       <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
         <h3 className="text-xl font-bold mb-2">
           {name}
@@ -49,11 +38,10 @@ const ProjectCard: React.FC<Project> = ({
           ))}
         </div>
       </div>
-
-      {/* Link to project details */}
       <Link
         to={`/project/${slug}`}
         className="absolute inset-0"
+        aria-label={`View details for ${name}`}
       ></Link>
     </div>
   )

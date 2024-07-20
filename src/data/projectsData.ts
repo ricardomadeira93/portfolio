@@ -14,7 +14,8 @@ export const projects: Project[] = [
     slug: "project-one",
     name: "Project One",
     description: "Details about Project One",
-    thumbnail: "/path/to/thumbnail1.jpg", // Example path to thumbnail image
+    thumbnail:
+      "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Example path to thumbnail image
     logo: "/path/to/logo1.png", // Example path to logo image
     skills: [
       "React",

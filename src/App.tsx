@@ -11,15 +11,17 @@ import "./index.css"
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />} />
-        <Route
-          path="/project/:slug"
-          element={<ProjectDetail />}
-        />
-      </Routes>
-    </Router>
+    <div className="max-w-screen-xl">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />} />
+          <Route
+            path="/project/:slug"
+            element={<ProjectDetail />}
+          />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 

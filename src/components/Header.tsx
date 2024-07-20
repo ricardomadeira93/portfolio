@@ -1,13 +1,16 @@
 import React from "react"
 
-export const Header: React.FC = () => {
+const Header: React.FC = () => {
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">
+    <header className="text-white p-6 flex flex-col">
+      <h1 className="text-6xl font-bold mb-2">
         Ricardo Madeira
       </h1>
-      <span>Web Developer</span>
-    </div>
+
+      <span className="text-2xl font-medium">
+        Web Developer
+      </span>
+    </header>
   )
 }
 
