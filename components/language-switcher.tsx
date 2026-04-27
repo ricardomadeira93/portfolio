@@ -15,8 +15,8 @@ export function LanguageSwitcher() {
   return (
     <div
       className={cn(
-        "flex items-center gap-1 border border-border bg-surface px-1 py-1",
-        "font-mono text-[11px] uppercase tracking-wider"
+        "flex max-w-full flex-wrap items-center gap-1 border border-border bg-surface px-1 py-1",
+        "font-mono text-[10px] uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-wider"
       )}
       aria-label="Language selector"
     >

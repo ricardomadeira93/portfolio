@@ -71,7 +71,7 @@ export function Footer() {
   const titleLines = t.title[language].split("\n")
 
   return (
-    <footer ref={ref} className="px-6 py-24 md:px-12 lg:px-24 border-t border-border">
+    <footer ref={ref} className="border-t border-border px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24">
       <div className="max-w-6xl mx-auto">
         {/* Main content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -87,7 +87,7 @@ export function Footer() {
             </div>
             <h2 
               className={cn(
-                "text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight",
+                "text-3xl font-light leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl",
                 isVisible ? "animate-mask-reveal delay-100" : "opacity-0"
               )}
               style={{ clipPath: isVisible ? undefined : "inset(0 100% 0 0)" }}
@@ -114,7 +114,7 @@ export function Footer() {
                   key={link.id}
                   href={link.href}
                   className={cn(
-                    "group relative flex items-center justify-between py-4 border-b border-border transition-colors duration-300",
+                    "group relative flex flex-col items-start gap-2 border-b border-border py-4 transition-colors duration-300 sm:flex-row sm:items-center sm:justify-between",
                     hoveredLink === link.id && "border-accent",
                     isVisible ? "animate-offset-slide" : "opacity-0"
                   )}
@@ -122,7 +122,7 @@ export function Footer() {
                   onMouseEnter={() => setHoveredLink(link.id)}
                   onMouseLeave={() => setHoveredLink(null)}
                 >
-                  <span className="flex items-center gap-4">
+                  <span className="flex items-center gap-3 sm:gap-4">
                     <span className="font-mono text-xs text-muted-foreground">
                       {link.id}
                     </span>
@@ -133,7 +133,8 @@ export function Footer() {
                   <span 
                     className={cn(
                       "font-mono text-xs text-muted-foreground transition-all duration-300",
-                      hoveredLink === link.id ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                      "opacity-100 sm:-translate-x-2 sm:opacity-0",
+                      hoveredLink === link.id && "sm:translate-x-0 sm:opacity-100"
                     )}
                   >
                     {t.open[language]}
@@ -154,7 +155,7 @@ export function Footer() {
           <div className="font-mono text-xs text-muted-foreground">
             <span className="text-accent">©</span> {t.builtWithClarity[language]}
           </div>
-          <div className="flex items-center gap-6 font-mono text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-muted-foreground sm:gap-6">
             <span>
               <span className="text-accent">03</span> / 03
             </span>

@@ -65,9 +65,9 @@ export function Hero() {
   const t = translations
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between px-6 py-8 md:px-12 lg:px-24">
+    <section className="relative flex min-h-screen flex-col justify-between overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 md:px-12 lg:px-24">
       {/* Top metadata bar */}
-      <header className="flex items-start justify-between">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div 
           className={`font-mono text-xs text-muted-foreground tracking-wider uppercase ${
             mounted ? "animate-offset-slide" : "opacity-0"
@@ -76,20 +76,20 @@ export function Hero() {
           <span className="text-accent">//</span> Ricardo.Madeira
         </div>
         <div 
-          className={`flex items-center gap-4 ${
+          className={`flex flex-wrap items-center gap-2 sm:justify-end sm:gap-3 md:gap-4 ${
             mounted ? "animate-offset-slide delay-100" : "opacity-0"
           }`}
         >
           <LanguageSwitcher />
           <ThemeToggle />
-          <span className="font-mono text-xs text-muted-foreground">
+          <span className="hidden font-mono text-xs text-muted-foreground sm:inline">
             v1.0.0
           </span>
         </div>
       </header>
 
       {/* Main title block */}
-      <div className="flex-1 flex flex-col justify-center py-24">
+      <div className="flex flex-1 flex-col justify-center py-16 sm:py-20 md:py-24">
         <div className="max-w-4xl">
           {/* System identifier */}
           <div 
@@ -103,7 +103,7 @@ export function Hero() {
 
           {/* Name - editorial typography */}
           <h1 
-            className={`text-6xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none mb-8 ${
+            className={`mb-6 text-5xl leading-none font-light tracking-tight sm:text-6xl md:mb-8 md:text-8xl lg:text-9xl ${
               mounted ? "animate-mask-reveal delay-300" : "opacity-0"
             }`}
             style={{ clipPath: mounted ? undefined : "inset(0 100% 0 0)" }}
@@ -113,12 +113,12 @@ export function Hero() {
 
           {/* Role with offset border treatment */}
           <div 
-            className={`relative inline-block ${
+            className={`relative inline-block max-w-full ${
               mounted ? "animate-offset-slide delay-500" : "opacity-0"
             }`}
           >
-            <div className="border border-border bg-surface px-6 py-3">
-              <span className="text-xl md:text-2xl font-light tracking-wide">
+            <div className="border border-border bg-surface px-4 py-3 sm:px-6">
+              <span className="block text-lg font-light tracking-wide sm:text-xl md:text-2xl">
                 {t.role[language]}
               </span>
             </div>
@@ -128,7 +128,7 @@ export function Hero() {
 
           {/* Descriptor text */}
           <p 
-            className={`mt-12 text-muted-foreground max-w-xl leading-relaxed ${
+            className={`mt-10 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base ${
               mounted ? "animate-offset-slide delay-600" : "opacity-0"
             }`}
           >
@@ -187,7 +187,7 @@ export function Hero() {
       </div>
 
       {/* Bottom navigation hints */}
-      <footer className="flex items-end justify-between">
+      <footer className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div 
           className={`font-mono text-xs text-muted-foreground ${
             mounted ? "animate-offset-slide delay-700" : "opacity-0"
@@ -196,7 +196,7 @@ export function Hero() {
           <span className="text-accent">01</span> / 03
         </div>
         <div 
-          className={`flex items-center gap-2 font-mono text-xs text-muted-foreground ${
+          className={`flex items-center gap-2 font-mono text-[10px] text-muted-foreground sm:text-xs ${
             mounted ? "animate-offset-slide delay-800" : "opacity-0"
           }`}
         >

@@ -71,8 +71,8 @@ export function SystemModule({
       />
 
       {/* Module header */}
-      <div className="flex items-start justify-between p-6 border-b border-border">
-        <div>
+      <div className="flex items-start justify-between gap-4 p-5 sm:p-6 border-b border-border">
+        <div className="min-w-0">
           <div 
             className={cn(
               "font-mono text-xs text-muted-foreground mb-2 tracking-wider",
@@ -83,7 +83,7 @@ export function SystemModule({
           </div>
           <h3 
             className={cn(
-              "text-2xl md:text-3xl font-light tracking-tight",
+              "text-2xl font-light tracking-tight md:text-3xl",
               isVisible ? "animate-mask-reveal delay-100" : "opacity-0"
             )}
             style={{ clipPath: isVisible ? undefined : "inset(0 100% 0 0)" }}
@@ -93,7 +93,7 @@ export function SystemModule({
           {subtitle && (
             <p 
               className={cn(
-                "text-muted-foreground mt-1",
+                "mt-1 text-sm text-muted-foreground sm:text-base",
                 isVisible ? "animate-offset-slide delay-200" : "opacity-0"
               )}
             >
@@ -119,7 +119,7 @@ export function SystemModule({
       {/* Tags row */}
       <div 
         className={cn(
-          "flex flex-wrap gap-2 px-6 py-4 border-b border-border",
+          "flex flex-wrap gap-2 px-5 py-4 sm:px-6 border-b border-border",
           isVisible ? "animate-offset-slide delay-200" : "opacity-0"
         )}
       >
@@ -134,10 +134,10 @@ export function SystemModule({
       </div>
 
       {/* Description */}
-      <div className="p-6">
+      <div className="p-5 sm:p-6">
         <p 
           className={cn(
-            "text-muted-foreground leading-relaxed",
+            "text-sm leading-relaxed text-muted-foreground sm:text-base",
             isVisible ? "animate-offset-slide delay-300" : "opacity-0"
           )}
         >
@@ -167,11 +167,12 @@ export function SystemModule({
         {details && (
           <div 
             className={cn(
-              "mt-6 pt-6 border-t border-border overflow-hidden transition-all duration-500",
-              isHovered ? "max-h-96 opacity-100" : "max-h-0 opacity-0 border-transparent"
+              "mt-6 max-h-[32rem] overflow-hidden border-t border-border pt-6 opacity-100 transition-all duration-500",
+              "md:max-h-0 md:opacity-0 md:border-transparent",
+              isHovered && "md:max-h-96 md:opacity-100 md:border-border"
             )}
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {details.map((detail) => (
                 <div key={detail.label}>
                   <div className="font-mono text-xs text-muted-foreground mb-1">
@@ -188,8 +189,9 @@ export function SystemModule({
       {/* Interactive prompt */}
       <div 
         className={cn(
-          "absolute bottom-0 left-0 right-0 h-px bg-accent transform origin-left transition-transform duration-500",
-          isHovered ? "scale-x-100" : "scale-x-0"
+          "absolute bottom-0 left-0 right-0 h-px bg-accent origin-left transition-transform duration-500",
+          "scale-x-100 md:scale-x-0",
+          isHovered && "md:scale-x-100"
         )} 
       />
     </div>

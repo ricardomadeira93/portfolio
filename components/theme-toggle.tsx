@@ -14,7 +14,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-[72px] h-8 border border-border bg-surface/30" />
+      <div className="h-8 w-[56px] border border-border bg-surface/30 sm:w-[72px]" />
     )
   }
 
@@ -24,7 +24,7 @@ export function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "group relative flex items-center gap-1 px-3 py-1.5 border border-border bg-surface",
+        "group relative flex h-8 items-center gap-1 border border-border bg-surface px-2.5 py-1.5 sm:px-3",
         "font-mono text-xs uppercase tracking-wider",
         "transition-colors duration-300",
         "hover:border-accent/50 hover:text-accent"

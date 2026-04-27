@@ -436,11 +436,11 @@ export function RAGDemo() {
   return (
     <section
       ref={ref}
-      className="px-6 py-24 md:px-12 lg:px-24 bg-surface border-y border-border"
+      className="border-y border-border bg-surface px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24"
     >
       {/* Section header */}
       <div className="mb-12">
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="font-mono text-xs text-muted-foreground tracking-widest">
             <span className="text-accent">//</span> {t.sectionLabel[language]}
           </div>
@@ -448,10 +448,10 @@ export function RAGDemo() {
             RAG_SYSTEM
           </div>
         </div>
-        <h2 className="text-4xl md:text-5xl font-light tracking-tight">
+        <h2 className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl">
           {t.title[language]}
         </h2>
-        <p className="mt-4 text-muted-foreground max-w-xl">
+        <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
           {t.subtitle[language]}
         </p>
       </div>
@@ -486,7 +486,7 @@ export function RAGDemo() {
                 onClick={() => runDemo(prompt)}
                 disabled={stage !== "idle"}
                 className={cn(
-                  "px-4 py-2 border border-border font-mono text-xs transition-all duration-200",
+                  "w-full px-4 py-2 text-left border border-border font-mono text-xs transition-all duration-200 sm:w-auto sm:text-center",
                   stage === "idle"
                     ? "hover:border-accent hover:text-accent"
                     : "opacity-50 cursor-not-allowed",
@@ -500,13 +500,14 @@ export function RAGDemo() {
         </div>
 
         {/* Pipeline stages indicator */}
-        <div className="flex border-b border-border">
+        <div className="grid grid-cols-2 border-b border-border sm:grid-cols-4">
           {(["query", "retrieval", "context", "generation"] as const).map(
             (s, i) => (
               <div
                 key={s}
                 className={cn(
-                  "flex-1 px-4 py-3 font-mono text-xs uppercase tracking-wider border-r border-border last:border-r-0 transition-colors duration-300",
+                  "px-3 py-3 font-mono text-[10px] uppercase tracking-wider transition-colors duration-300 sm:px-4 sm:text-xs",
+                  "border-r border-b border-border even:border-r-0 sm:border-b-0 sm:even:border-r sm:last:border-r-0",
                   stage === s && "bg-accent/10 text-accent",
                   stage !== "idle" &&
                     ["query", "retrieval", "context", "generation"].indexOf(
@@ -530,7 +531,7 @@ export function RAGDemo() {
         {/* Main demo area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
           {/* Left panel - Query & Retrieved */}
-          <div className="border-r border-border">
+          <div className="border-b border-border lg:border-r lg:border-b-0">
             {/* Query input area */}
             <div className="p-6 border-b border-border">
               <div className="font-mono text-xs text-muted-foreground mb-3">
@@ -565,7 +566,7 @@ export function RAGDemo() {
                     )}
                     style={{ animationDelay: `${i * 100}ms` }}
                   >
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                       <span className="font-mono text-xs text-accent">
                         {chunk.id}
                       </span>
@@ -587,7 +588,7 @@ export function RAGDemo() {
                   </div>
                 )}
                 {stage === "idle" && (
-                  <div className="h-24 border border-dashed border-border/50 flex items-center justify-center">
+                  <div className="flex h-24 items-center justify-center border border-dashed border-border/50 px-4 text-center">
                     <span className="font-mono text-xs text-muted-foreground/50">
                       {t.awaitingQuery[language]}
                     </span>
@@ -616,7 +617,7 @@ export function RAGDemo() {
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-accent" />
-                      <span className="font-mono text-xs">
+                      <span className="font-mono text-xs break-words">
                         {selectedPrompt?.chunks.length || 3} {t.chunksMerged[language]} | {selectedPrompt?.stats.tokens || 0} {t.tokens[language]}
                       </span>
                     </div>
@@ -656,7 +657,7 @@ export function RAGDemo() {
                     </div>
                     {stage === "complete" && selectedPrompt && (
                       <div className="mt-4 pt-4 border-t border-border">
-                        <div className="flex items-center gap-4 font-mono text-xs text-muted-foreground">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-xs text-muted-foreground">
                           <span>
                             <span className="text-accent">{selectedPrompt.stats.sources}</span> {t.sourcesCited[language]}
                           </span>
@@ -683,7 +684,7 @@ export function RAGDemo() {
         </div>
 
         {/* Control bar */}
-        <div className="flex items-center justify-between p-4 border-t border-border bg-surface">
+        <div className="flex flex-col gap-3 border-t border-border bg-surface p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="font-mono text-xs text-muted-foreground">
             {t.status[language]}:{" "}
             <span className={cn(stage !== "idle" && "text-accent")}>
@@ -693,7 +694,7 @@ export function RAGDemo() {
           {stage !== "idle" && (
             <button
               onClick={() => resetDemo()}
-              className="px-6 py-2 border border-border text-muted-foreground font-mono text-xs uppercase tracking-wider transition-all duration-300 hover:border-foreground hover:text-foreground"
+              className="w-full border border-border px-6 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all duration-300 hover:border-foreground hover:text-foreground sm:w-auto"
             >
               {t.reset[language]}
             </button>

@@ -175,13 +175,13 @@ export function Projects() {
   const projects = t.projects[language]
 
   return (
-    <section className="px-6 py-24 md:px-12 lg:px-24">
+    <section className="px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24">
       {/* Section header */}
       <div className="mb-16">
         <div className="font-mono text-xs text-muted-foreground mb-4 tracking-widest">
           <span className="text-accent">//</span> {t.sectionLabel[language]}
         </div>
-        <h2 className="text-4xl md:text-5xl font-light tracking-tight">
+        <h2 className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl">
           {t.title[language]}
         </h2>
         <div className="mt-4 w-24 h-px bg-accent" />
@@ -206,11 +206,11 @@ export function Projects() {
       </div>
 
       {/* Bottom metadata */}
-      <div className="mt-16 flex items-center justify-between font-mono text-xs text-muted-foreground">
+      <div className="mt-16 flex flex-col gap-2 font-mono text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <span>
           <span className="text-accent">02</span> / 03
         </span>
-        <span>{t.moreProjects[language]}</span>
+        <span className="sm:text-right">{t.moreProjects[language]}</span>
       </div>
     </section>
   )
