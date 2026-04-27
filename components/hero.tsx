@@ -1,14 +1,68 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useLanguage } from "./language-provider"
+import { LanguageSwitcher } from "./language-switcher"
 import { ThemeToggle } from "./theme-toggle"
+
+const translations = {
+  session: {
+    en: "ACTIVE_SESSION",
+    "pt-PT": "SESSAO_ACTIVA",
+    es: "SESION_ACTIVA",
+  },
+  role: {
+    en: "Fullstack Developer & AI Engineer",
+    "pt-PT": "Programador Fullstack & Engenheiro de IA",
+    es: "Desarrollador Fullstack e Ingeniero de IA",
+  },
+  description: {
+    en: "I build RAG systems and production AI applications. Focus on traceability, clean interfaces, and systems that actually work in practice.",
+    "pt-PT":
+      "Construo sistemas RAG e aplicações de IA em produção. Foco em rastreabilidade, interfaces limpas e sistemas que funcionam na prática.",
+    es: "Construyo sistemas RAG y aplicaciones de IA en producción. Enfoque en trazabilidad, interfaces limpias y sistemas que funcionan en la práctica.",
+  },
+  building: {
+    en: "BUILDING",
+    "pt-PT": "A_CONSTRUIR",
+    es: "CONSTRUYENDO",
+  },
+  experience: {
+    en: "EXPERIENCE",
+    "pt-PT": "EXPERIENCIA",
+    es: "EXPERIENCIA",
+  },
+  focus: {
+    en: "FOCUS",
+    "pt-PT": "FOCO",
+    es: "ENFOQUE",
+  },
+  buildingItems: {
+    en: ["RAG systems", "AI workflows", "production web apps"],
+    "pt-PT": ["sistemas RAG", "workflows de IA", "apps web em produção"],
+    es: ["sistemas RAG", "flujos de IA", "apps web en producción"],
+  },
+  focusItems: {
+    en: ["traceable answers", "clean interfaces", "maintainable systems"],
+    "pt-PT": ["respostas rastreáveis", "interfaces limpas", "sistemas sustentáveis"],
+    es: ["respuestas trazables", "interfaces limpias", "sistemas mantenibles"],
+  },
+  scroll: {
+    en: "SCROLL_TO_EXPLORE",
+    "pt-PT": "SCROLL_PARA_EXPLORAR",
+    es: "SCROLL_PARA_EXPLORAR",
+  },
+}
 
 export function Hero() {
   const [mounted, setMounted] = useState(false)
+  const { language } = useLanguage()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  const t = translations
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between px-6 py-8 md:px-12 lg:px-24">
@@ -26,6 +80,7 @@ export function Hero() {
             mounted ? "animate-offset-slide delay-100" : "opacity-0"
           }`}
         >
+          <LanguageSwitcher />
           <ThemeToggle />
           <span className="font-mono text-xs text-muted-foreground">
             v1.0.0
@@ -43,7 +98,7 @@ export function Hero() {
             }`}
           >
             <span className="inline-block w-2 h-2 bg-accent mr-2" />
-            ACTIVE_SESSION
+            {t.session[language]}
           </div>
 
           {/* Name - editorial typography */}
@@ -64,7 +119,7 @@ export function Hero() {
           >
             <div className="border border-border bg-surface px-6 py-3">
               <span className="text-xl md:text-2xl font-light tracking-wide">
-                Fullstack Developer & AI Engineer
+                {t.role[language]}
               </span>
             </div>
             {/* Offset shadow border */}
@@ -77,8 +132,7 @@ export function Hero() {
               mounted ? "animate-offset-slide delay-600" : "opacity-0"
             }`}
           >
-            I build RAG systems and production AI applications. Focus on traceability, 
-            clean interfaces, and systems that actually work in practice.
+            {t.description[language]}
           </p>
 
           {/* Proof layer — system metadata */}
@@ -89,10 +143,10 @@ export function Hero() {
           >
             <div>
               <div className="font-mono text-[10px] text-accent tracking-widest mb-2">
-                BUILDING
+                {t.building[language]}
               </div>
               <ul className="space-y-1">
-                {["RAG systems", "AI workflows", "production web apps"].map((item) => (
+                {t.buildingItems[language].map((item) => (
                   <li key={item} className="font-mono text-xs text-muted-foreground flex items-center gap-2">
                     <span className="text-accent/60">→</span>
                     {item}
@@ -103,7 +157,7 @@ export function Hero() {
 
             <div>
               <div className="font-mono text-[10px] text-accent tracking-widest mb-2">
-                EXPERIENCE
+                {t.experience[language]}
               </div>
               <ul className="space-y-1">
                 {["Betacode", "CoderStein", "Forma Studio"].map((item) => (
@@ -117,10 +171,10 @@ export function Hero() {
 
             <div>
               <div className="font-mono text-[10px] text-accent tracking-widest mb-2">
-                FOCUS
+                {t.focus[language]}
               </div>
               <ul className="space-y-1">
-                {["traceable answers", "clean interfaces", "maintainable systems"].map((item) => (
+                {t.focusItems[language].map((item) => (
                   <li key={item} className="font-mono text-xs text-muted-foreground flex items-center gap-2">
                     <span className="text-accent/60">→</span>
                     {item}
@@ -146,7 +200,7 @@ export function Hero() {
             mounted ? "animate-offset-slide delay-800" : "opacity-0"
           }`}
         >
-          <span>SCROLL_TO_EXPLORE</span>
+          <span>{t.scroll[language]}</span>
           <span className="inline-block w-4 h-px bg-accent animate-pulse-line" />
         </div>
       </footer>

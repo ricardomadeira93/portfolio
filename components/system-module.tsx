@@ -9,6 +9,8 @@ interface SystemModuleProps {
   subtitle?: string
   tags: string[]
   description: string
+  url?: string
+  ctaLabel?: string
   details?: {
     label: string
     value: string
@@ -22,6 +24,8 @@ export function SystemModule({
   subtitle,
   tags,
   description,
+  url,
+  ctaLabel = "View Project",
   details,
   className,
 }: SystemModuleProps) {
@@ -139,6 +143,25 @@ export function SystemModule({
         >
           {description}
         </p>
+
+        {url && (
+          <div
+            className={cn(
+              "mt-6",
+              isVisible ? "animate-offset-slide delay-400" : "opacity-0"
+            )}
+          >
+            <a
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 border border-border bg-surface px-4 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
+            >
+              <span>{ctaLabel}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        )}
 
         {/* Details panel - reveals on hover */}
         {details && (

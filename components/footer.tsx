@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "./language-provider"
 
 const links = [
   { label: "GitHub", href: "#", id: "01" },
@@ -9,10 +10,44 @@ const links = [
   { label: "Email", href: "mailto:hello@example.com", id: "03" },
 ]
 
+const translations = {
+  sectionLabel: {
+    en: "INITIATE_CONTACT",
+    "pt-PT": "INICIAR_CONTACTO",
+    es: "INICIAR_CONTACTO",
+  },
+  title: {
+    en: "Let's work\ntogether.",
+    "pt-PT": "Vamos trabalhar\njuntos.",
+    es: "Trabajemos\njuntos.",
+  },
+  externalLinks: {
+    en: "EXTERNAL_LINKS",
+    "pt-PT": "LINKS_EXTERNOS",
+    es: "ENLACES_EXTERNOS",
+  },
+  open: {
+    en: "OPEN →",
+    "pt-PT": "ABRIR →",
+    es: "ABRIR →",
+  },
+  builtWithClarity: {
+    en: "2024 Ricardo Madeira. Built with clarity.",
+    "pt-PT": "2024 Ricardo Madeira. Construído com clareza.",
+    es: "2024 Ricardo Madeira. Construido con claridad.",
+  },
+  systemActive: {
+    en: "SYSTEM_ACTIVE",
+    "pt-PT": "SISTEMA_ACTIVO",
+    es: "SISTEMA_ACTIVO",
+  },
+}
+
 export function Footer() {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLElement>(null)
+  const { language } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,6 +67,9 @@ export function Footer() {
     return () => observer.disconnect()
   }, [])
 
+  const t = translations
+  const titleLines = t.title[language].split("\n")
+
   return (
     <footer ref={ref} className="px-6 py-24 md:px-12 lg:px-24 border-t border-border">
       <div className="max-w-6xl mx-auto">
@@ -45,7 +83,7 @@ export function Footer() {
                 isVisible ? "animate-offset-slide" : "opacity-0"
               )}
             >
-              <span className="text-accent">//</span> INITIATE_CONTACT
+              <span className="text-accent">//</span> {t.sectionLabel[language]}
             </div>
             <h2 
               className={cn(
@@ -54,9 +92,9 @@ export function Footer() {
               )}
               style={{ clipPath: isVisible ? undefined : "inset(0 100% 0 0)" }}
             >
-              Let&apos;s work
+              {titleLines[0]}
               <br />
-              <span className="text-accent">together.</span>
+              <span className="text-accent">{titleLines[1]}</span>
             </h2>
           </div>
 
@@ -68,7 +106,7 @@ export function Footer() {
                 isVisible ? "animate-offset-slide delay-200" : "opacity-0"
               )}
             >
-              EXTERNAL_LINKS
+              {t.externalLinks[language]}
             </div>
             <nav className="flex flex-col gap-4">
               {links.map((link, i) => (
@@ -98,7 +136,7 @@ export function Footer() {
                       hoveredLink === link.id ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
                     )}
                   >
-                    OPEN →
+                    {t.open[language]}
                   </span>
                 </a>
               ))}
@@ -114,7 +152,7 @@ export function Footer() {
           )}
         >
           <div className="font-mono text-xs text-muted-foreground">
-            <span className="text-accent">©</span> 2024 Ricardo Madeira. Built with clarity.
+            <span className="text-accent">©</span> {t.builtWithClarity[language]}
           </div>
           <div className="flex items-center gap-6 font-mono text-xs text-muted-foreground">
             <span>
@@ -122,7 +160,7 @@ export function Footer() {
             </span>
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 bg-accent animate-pulse" />
-              SYSTEM_ACTIVE
+              {t.systemActive[language]}
             </span>
           </div>
         </div>

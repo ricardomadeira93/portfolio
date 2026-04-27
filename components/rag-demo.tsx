@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
+import { useLanguage, type SiteLanguage } from "./language-provider"
 
 type Stage = "idle" | "query" | "retrieval" | "context" | "generation" | "complete"
-type Language = "en" | "pt" | "es"
 
 interface RetrievedChunk {
   id: string
@@ -14,9 +14,9 @@ interface RetrievedChunk {
 }
 
 interface QuickPrompt {
-  label: Record<Language, string>
-  query: Record<Language, string>
-  response: Record<Language, string>
+  label: Record<SiteLanguage, string>
+  query: Record<SiteLanguage, string>
+  response: Record<SiteLanguage, string>
   chunks: RetrievedChunk[]
   stats: { sources: number; tokens: number; latency: string }
 }
@@ -25,12 +25,12 @@ const quickPrompts: QuickPrompt[] = [
   {
     label: {
       en: "What does Ricardo build?",
-      pt: "O que o Ricardo constrói?",
+      "pt-PT": "O que o Ricardo constrói?",
       es: "¿Qué construye Ricardo?",
     },
     query: {
       en: "What does Ricardo build?",
-      pt: "O que o Ricardo constrói?",
+      "pt-PT": "O que o Ricardo constrói?",
       es: "¿Qué construye Ricardo?",
     },
     response: {
@@ -45,7 +45,7 @@ Examples include:
 • STARK: local-first document assistant with citations
 • Draft: RFP automation system using structured retrieval
 • Events Platform: production system managing real users and operations`,
-      pt: `O Ricardo constrói aplicações fullstack e sistemas de IA, com foco em retrieval-augmented generation (RAG).
+      "pt-PT": `O Ricardo constrói aplicações fullstack e sistemas de IA, com foco em retrieval-augmented generation (RAG).
 
 O seu trabalho centra-se em:
 • construir sistemas que retornam respostas verificáveis
@@ -93,12 +93,12 @@ Ejemplos incluyen:
   {
     label: {
       en: "Explain STARK",
-      pt: "Explica o STARK",
+      "pt-PT": "Explica o STARK",
       es: "Explica STARK",
     },
     query: {
       en: "What is STARK and how does it work?",
-      pt: "O que é o STARK e como funciona?",
+      "pt-PT": "O que é o STARK e como funciona?",
       es: "¿Qué es STARK y cómo funciona?",
     },
     response: {
@@ -110,7 +110,7 @@ Key characteristics:
 • Built for document analysis workflows where accuracy matters
 
 The system uses RAG architecture to retrieve relevant chunks from your documents before generating responses, ensuring answers are grounded in your actual data rather than hallucinated.`,
-      pt: `O STARK é um assistente de documentos de IA local-first, desenhado para privacidade e rastreabilidade.
+      "pt-PT": `O STARK é um assistente de documentos de IA local-first, desenhado para privacidade e rastreabilidade.
 
 Características principais:
 • Corre inteiramente em ficheiros locais — nenhum dado sai da sua máquina
@@ -146,12 +146,12 @@ El sistema usa arquitectura RAG para recuperar chunks relevantes de tus document
   {
     label: {
       en: "What is this demo showing?",
-      pt: "O que mostra esta demo?",
+      "pt-PT": "O que mostra esta demo?",
       es: "¿Qué muestra esta demo?",
     },
     query: {
       en: "What is this system demonstrating?",
-      pt: "O que demonstra este sistema?",
+      "pt-PT": "O que demonstra este sistema?",
       es: "¿Qué demuestra este sistema?",
     },
     response: {
@@ -164,7 +164,7 @@ The four stages shown:
 • Generation: The LLM generates a response grounded in the retrieved context
 
 Each response includes source citations and metadata (tokens, latency) to demonstrate the traceability that RAG enables.`,
-      pt: `Esta demo visualiza um pipeline RAG (Retrieval-Augmented Generation) em acção.
+      "pt-PT": `Esta demo visualiza um pipeline RAG (Retrieval-Augmented Generation) em acção.
 
 As quatro fases mostradas:
 • Query: A sua pergunta é processada e convertida em embedding
@@ -204,120 +204,141 @@ Cada respuesta incluye citas de fuentes y metadatos (tokens, latencia) para demo
 const translations = {
   sectionLabel: {
     en: "LIVE_DEMONSTRATION",
-    pt: "DEMONSTRAÇÃO_AO_VIVO",
+    "pt-PT": "DEMONSTRACAO_AO_VIVO",
     es: "DEMOSTRACIÓN_EN_VIVO",
   },
   title: {
     en: "RAG Pipeline",
-    pt: "Pipeline RAG",
+    "pt-PT": "Pipeline RAG",
     es: "Pipeline RAG",
   },
   subtitle: {
     en: "Interactive visualization of retrieval-augmented generation. Ask a question to see how queries transform into contextual responses.",
-    pt: "Visualização interactiva de retrieval-augmented generation. Faça uma pergunta para ver como as queries se transformam em respostas contextuais.",
+    "pt-PT": "Visualização interactiva de retrieval-augmented generation. Faça uma pergunta para ver como as queries se transformam em respostas contextuais.",
     es: "Visualización interactiva de retrieval-augmented generation. Haz una pregunta para ver cómo las queries se transforman en respuestas contextuales.",
   },
   systemContext: {
     en: "This demo is trained on project documentation and system notes.",
-    pt: "Esta demo está treinada em documentação de projectos e notas do sistema.",
+    "pt-PT": "Esta demo está treinada em documentação de projectos e notas do sistema.",
     es: "Esta demo está entrenada en documentación de proyectos y notas del sistema.",
   },
   tryLabel: {
     en: "Try:",
-    pt: "Experimente:",
+    "pt-PT": "Experimente:",
     es: "Prueba:",
   },
   placeholder: {
     en: "Ask something about RAG, projects, or system design...",
-    pt: "Pergunte algo sobre RAG, projectos ou design de sistemas...",
+    "pt-PT": "Pergunte algo sobre RAG, projectos ou design de sistemas...",
     es: "Pregunta algo sobre RAG, proyectos o diseño de sistemas...",
   },
   inputQuery: {
     en: "INPUT_QUERY",
-    pt: "INPUT_QUERY",
+    "pt-PT": "INPUT_QUERY",
     es: "INPUT_QUERY",
   },
   retrievedChunks: {
     en: "RETRIEVED_CHUNKS",
-    pt: "CHUNKS_RECUPERADOS",
+    "pt-PT": "CHUNKS_RECUPERADOS",
     es: "CHUNKS_RECUPERADOS",
   },
   contextAssembly: {
     en: "CONTEXT_ASSEMBLY",
-    pt: "MONTAGEM_CONTEXTO",
+    "pt-PT": "MONTAGEM_CONTEXTO",
     es: "ENSAMBLAJE_CONTEXTO",
   },
   generatedResponse: {
     en: "GENERATED_RESPONSE",
-    pt: "RESPOSTA_GERADA",
+    "pt-PT": "RESPOSTA_GERADA",
     es: "RESPUESTA_GENERADA",
   },
   sourcesCited: {
     en: "sources cited",
-    pt: "fontes citadas",
+    "pt-PT": "fontes citadas",
     es: "fuentes citadas",
   },
   tokens: {
     en: "tokens",
-    pt: "tokens",
+    "pt-PT": "tokens",
     es: "tokens",
   },
   status: {
     en: "STATUS",
-    pt: "ESTADO",
+    "pt-PT": "ESTADO",
     es: "ESTADO",
   },
   runPipeline: {
     en: "Run Pipeline",
-    pt: "Executar Pipeline",
+    "pt-PT": "Executar Pipeline",
     es: "Ejecutar Pipeline",
   },
   reset: {
     en: "Reset",
-    pt: "Reiniciar",
+    "pt-PT": "Reiniciar",
     es: "Reiniciar",
   },
   footnote: {
     en: "Demonstration uses simulated retrieval with real project data",
-    pt: "Demonstração usa retrieval simulado com dados reais de projectos",
+    "pt-PT": "Demonstração usa retrieval simulado com dados reais de projectos",
     es: "Demostración usa retrieval simulado con datos reales de proyectos",
   },
   awaitingQuery: {
     en: "Awaiting query...",
-    pt: "À espera de query...",
+    "pt-PT": "À espera de query...",
     es: "Esperando query...",
   },
   awaitingRetrieval: {
     en: "Awaiting retrieval completion...",
-    pt: "À espera da conclusão do retrieval...",
+    "pt-PT": "À espera da conclusão do retrieval...",
     es: "Esperando finalización del retrieval...",
   },
   awaitingContext: {
     en: "Awaiting context...",
-    pt: "À espera de contexto...",
+    "pt-PT": "À espera de contexto...",
     es: "Esperando contexto...",
   },
   chunksMerged: {
     en: "chunks merged",
-    pt: "chunks agregados",
+    "pt-PT": "chunks agregados",
     es: "chunks fusionados",
   },
   contextOptimized: {
     en: "Context optimized for relevance",
-    pt: "Contexto optimizado para relevância",
+    "pt-PT": "Contexto optimizado para relevância",
     es: "Contexto optimizado para relevancia",
+  },
+  stageLabels: {
+    en: {
+      query: "query",
+      retrieval: "retrieval",
+      context: "context",
+      generation: "generation",
+    },
+    "pt-PT": {
+      query: "query",
+      retrieval: "retrieval",
+      context: "contexto",
+      generation: "geracao",
+    },
+    es: {
+      query: "query",
+      retrieval: "retrieval",
+      context: "contexto",
+      generation: "generacion",
+    },
   },
 }
 
 export function RAGDemo() {
+  const { language } = useLanguage()
   const [stage, setStage] = useState<Stage>("idle")
   const [selectedPrompt, setSelectedPrompt] = useState<QuickPrompt | null>(null)
   const [displayedQuery, setDisplayedQuery] = useState("")
   const [retrievedChunks, setRetrievedChunks] = useState<RetrievedChunk[]>([])
   const [generatedText, setGeneratedText] = useState("")
   const [isVisible, setIsVisible] = useState(false)
-  const [language, setLanguage] = useState<Language>("en")
   const ref = useRef<HTMLDivElement>(null)
+  const runIdRef = useRef(0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -337,8 +358,30 @@ export function RAGDemo() {
     return () => observer.disconnect()
   }, [])
 
+  const resetDemo = (nextRunId?: number) => {
+    runIdRef.current = nextRunId ?? runIdRef.current + 1
+    setStage("idle")
+    setSelectedPrompt(null)
+    setDisplayedQuery("")
+    setRetrievedChunks([])
+    setGeneratedText("")
+  }
+
+  useEffect(() => {
+    resetDemo()
+  }, [language])
+
+  useEffect(() => {
+    return () => {
+      runIdRef.current += 1
+    }
+  }, [])
+
   const runDemo = async (prompt: QuickPrompt) => {
     if (stage !== "idle") return
+
+    const runId = runIdRef.current + 1
+    runIdRef.current = runId
     setSelectedPrompt(prompt)
 
     const query = prompt.query[language]
@@ -348,42 +391,44 @@ export function RAGDemo() {
     setStage("query")
     setDisplayedQuery("")
     for (let i = 0; i <= query.length; i++) {
+      if (runIdRef.current !== runId) return
       await new Promise((r) => setTimeout(r, 30))
+      if (runIdRef.current !== runId) return
       setDisplayedQuery(query.slice(0, i))
     }
     await new Promise((r) => setTimeout(r, 400))
+    if (runIdRef.current !== runId) return
 
     // Stage 2: Retrieval
     setStage("retrieval")
     setRetrievedChunks([])
     for (const chunk of prompt.chunks) {
+      if (runIdRef.current !== runId) return
       await new Promise((r) => setTimeout(r, 350))
+      if (runIdRef.current !== runId) return
       setRetrievedChunks((prev) => [...prev, chunk])
     }
     await new Promise((r) => setTimeout(r, 500))
+    if (runIdRef.current !== runId) return
 
     // Stage 3: Context assembly
     setStage("context")
     await new Promise((r) => setTimeout(r, 800))
+    if (runIdRef.current !== runId) return
 
     // Stage 4: Generation
     setStage("generation")
     setGeneratedText("")
     for (let i = 0; i <= response.length; i++) {
+      if (runIdRef.current !== runId) return
       await new Promise((r) => setTimeout(r, 12))
+      if (runIdRef.current !== runId) return
       setGeneratedText(response.slice(0, i))
     }
 
     // Stage 5: Complete
+    if (runIdRef.current !== runId) return
     setStage("complete")
-  }
-
-  const resetDemo = () => {
-    setStage("idle")
-    setSelectedPrompt(null)
-    setDisplayedQuery("")
-    setRetrievedChunks([])
-    setGeneratedText("")
   }
 
   const t = translations
@@ -399,26 +444,8 @@ export function RAGDemo() {
           <div className="font-mono text-xs text-muted-foreground tracking-widest">
             <span className="text-accent">//</span> {t.sectionLabel[language]}
           </div>
-          {/* Language switcher */}
-          <div className="flex items-center gap-1 font-mono text-xs">
-            {(["en", "pt", "es"] as const).map((lang) => (
-              <button
-                key={lang}
-                onClick={() => {
-                  if (stage === "idle") setLanguage(lang)
-                }}
-                disabled={stage !== "idle"}
-                className={cn(
-                  "px-2 py-1 uppercase transition-colors",
-                  language === lang
-                    ? "text-accent"
-                    : "text-muted-foreground hover:text-foreground",
-                  stage !== "idle" && "opacity-50 cursor-not-allowed"
-                )}
-              >
-                {lang}
-              </button>
-            ))}
+          <div className="font-mono text-[10px] text-muted-foreground tracking-widest">
+            RAG_SYSTEM
           </div>
         </div>
         <h2 className="text-4xl md:text-5xl font-light tracking-tight">
@@ -494,7 +521,7 @@ export function RAGDemo() {
                 )}
               >
                 <span className="text-accent/50 mr-2">0{i + 1}</span>
-                {s}
+                {t.stageLabels[language][s]}
               </div>
             )
           )}
@@ -665,7 +692,7 @@ export function RAGDemo() {
           </div>
           {stage !== "idle" && (
             <button
-              onClick={resetDemo}
+              onClick={() => resetDemo()}
               className="px-6 py-2 border border-border text-muted-foreground font-mono text-xs uppercase tracking-wider transition-all duration-300 hover:border-foreground hover:text-foreground"
             >
               {t.reset[language]}
