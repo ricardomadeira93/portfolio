@@ -5,9 +5,9 @@ import { cn } from "@/lib/utils"
 import { useLanguage } from "./language-provider"
 
 const links = [
-  { label: "GitHub", href: "#", id: "01" },
-  { label: "LinkedIn", href: "#", id: "02" },
-  { label: "Email", href: "mailto:hello@example.com", id: "03" },
+  { label: "GitHub", href: "https://github.com/ricardomadeira93/", id: "01" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ricardo-madeira-8ab393280/", id: "02" },
+  { label: "Email", href: "mailto:madeiragpersonal@gmail.com", id: "03" },
 ]
 
 const translations = {
@@ -113,6 +113,8 @@ export function Footer() {
                 <a
                   key={link.id}
                   href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   className={cn(
                     "group relative flex flex-col items-start gap-2 border-b border-border py-4 transition-colors duration-300 sm:flex-row sm:items-center sm:justify-between",
                     hoveredLink === link.id && "border-accent",

@@ -30,7 +30,7 @@ const translations = {
         id: "SYS_001",
         title: "STARK",
         subtitle: "Local-first AI document assistant",
-        url: undefined,
+        url: "https://stark-snowy.vercel.app/",
         tags: ["RAG", "Local-First", "Python", "Privacy"],
         description:
           "Local-first AI assistant for querying documents with citations. Works entirely on local files. Emphasis on privacy and traceable answers; every response shows its sources.",
@@ -45,7 +45,7 @@ const translations = {
         id: "SYS_002",
         title: "Draft",
         subtitle: "RFP automation system",
-        url: undefined,
+        url: "https://draft-pink.vercel.app",
         tags: ["RFP", "Automation", "Retrieval", "Workflow"],
         description:
           "Automates repetitive RFP responses using structured prompts and retrieval. Generates and structures responses from past proposals. Reduces manual drafting and repetition.",
@@ -77,7 +77,7 @@ const translations = {
         id: "SYS_001",
         title: "STARK",
         subtitle: "Assistente de documentos com IA local-first",
-        url: undefined,
+        url: "https://stark-snowy.vercel.app/",
         tags: ["RAG", "Local-First", "Python", "Privacidade"],
         description:
           "Assistente de IA local-first para consultar documentos com citações. Funciona inteiramente em ficheiros locais. Foco em privacidade e respostas rastreáveis; cada resposta mostra as suas fontes.",
@@ -92,7 +92,7 @@ const translations = {
         id: "SYS_002",
         title: "Draft",
         subtitle: "Sistema de automação de RFPs",
-        url: undefined,
+        url: "https://draft-pink.vercel.app",
         tags: ["RFP", "Automação", "Retrieval", "Workflow"],
         description:
           "Automatiza respostas repetitivas a RFPs com prompts estruturados e retrieval. Gera e organiza respostas a partir de propostas anteriores. Reduz trabalho manual e repetição.",
@@ -124,7 +124,7 @@ const translations = {
         id: "SYS_001",
         title: "STARK",
         subtitle: "Asistente de documentos con IA local-first",
-        url: undefined,
+        url: "https://stark-snowy.vercel.app/",
         tags: ["RAG", "Local-First", "Python", "Privacidad"],
         description:
           "Asistente de IA local-first para consultar documentos con citas. Funciona completamente con archivos locales. Enfoque en privacidad y respuestas trazables; cada respuesta muestra sus fuentes.",
@@ -139,7 +139,7 @@ const translations = {
         id: "SYS_002",
         title: "Draft",
         subtitle: "Sistema de automatización de RFP",
-        url: undefined,
+        url: "https://draft-pink.vercel.app",
         tags: ["RFP", "Automatización", "Retrieval", "Workflow"],
         description:
           "Automatiza respuestas repetitivas de RFP usando prompts estructurados y retrieval. Genera y organiza respuestas a partir de propuestas anteriores. Reduce redacción manual y repetición.",
