@@ -12,9 +12,9 @@ const links = [
 
 const translations = {
   sectionLabel: {
-    en: "INITIATE_CONTACT",
-    "pt-PT": "INICIAR_CONTACTO",
-    es: "INICIAR_CONTACTO",
+    en: "Initiate Contact",
+    "pt-PT": "Iniciar Contacto",
+    es: "Iniciar Contacto",
   },
   title: {
     en: "Available for\nselect partnerships.",
@@ -22,9 +22,9 @@ const translations = {
     es: "Disponible para\nalianzas seleccionadas.",
   },
   externalLinks: {
-    en: "EXTERNAL_LINKS",
-    "pt-PT": "LINKS_EXTERNOS",
-    es: "ENLACES_EXTERNOS",
+    en: "External Links",
+    "pt-PT": "Links Externos",
+    es: "Enlaces Externos",
   },
   open: {
     en: "OPEN →",
@@ -37,9 +37,9 @@ const translations = {
     es: "2024 Ricardo Madeira. Construido con claridad.",
   },
   systemActive: {
-    en: "SYSTEM_ACTIVE",
-    "pt-PT": "SISTEMA_ACTIVO",
-    es: "SISTEMA_ACTIVO",
+    en: "System Active",
+    "pt-PT": "Sistema Ativo",
+    es: "Sistema Activo",
   },
 }
 

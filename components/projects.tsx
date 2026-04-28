@@ -5,9 +5,9 @@ import { SystemModule } from "./system-module"
 
 const translations = {
   sectionLabel: {
-    en: "PROJECTS",
-    "pt-PT": "PROJECTOS",
-    es: "PROYECTOS",
+    en: "Selected Projects",
+    "pt-PT": "Projetos Selecionados",
+    es: "Proyectos Seleccionados",
   },
   title: {
     en: "What I've Built",
@@ -15,9 +15,9 @@ const translations = {
     es: "Lo Que He Construido",
   },
   moreProjects: {
-    en: "MORE_PROJECTS_AVAILABLE",
-    "pt-PT": "MAIS_PROJECTOS_DISPONIVEIS",
-    es: "MAS_PROYECTOS_DISPONIBLES",
+    en: "More projects available on request",
+    "pt-PT": "Mais projetos disponíveis sob consulta",
+    es: "Más proyectos disponibles bajo consulta",
   },
   viewProject: {
     en: "View Project",
@@ -27,7 +27,7 @@ const translations = {
   projects: {
     en: [
       {
-        id: "SYS_001",
+        id: "Module 001",
         title: "STARK",
         subtitle: "Privacy Centric Local RAG Assistant",
         url: "https://stark-snowy.vercel.app/",
@@ -42,7 +42,7 @@ const translations = {
         ],
       },
       {
-        id: "SYS_002",
+        id: "Module 002",
         title: "Draft",
         subtitle: "High Precision RFP Automation",
         url: "https://draft-pink.vercel.app",
@@ -57,7 +57,7 @@ const translations = {
         ],
       },
       {
-        id: "SYS_003",
+        id: "Module 003",
         title: "CoderStein Events",
         subtitle: "Enterprise Event Management Platform",
         url: undefined,
@@ -74,7 +74,7 @@ const translations = {
     ],
     "pt-PT": [
       {
-        id: "SYS_001",
+        id: "Módulo 001",
         title: "STARK",
         subtitle: "Assistente de RAG Local com Foco em Privacidade",
         url: "https://stark-snowy.vercel.app/",
@@ -89,7 +89,7 @@ const translations = {
         ],
       },
       {
-        id: "SYS_002",
+        id: "Módulo 002",
         title: "Draft",
         subtitle: "Automação de RFPs de Alta Precisão",
         url: "https://draft-pink.vercel.app",
@@ -104,7 +104,7 @@ const translations = {
         ],
       },
       {
-        id: "SYS_003",
+        id: "Módulo 003",
         title: "CoderStein Events",
         subtitle: "Plataforma Enterprise de Gestão de Eventos",
         url: undefined,
@@ -121,7 +121,7 @@ const translations = {
     ],
     es: [
       {
-        id: "SYS_001",
+        id: "Módulo 001",
         title: "STARK",
         subtitle: "Asistente de RAG Local con Enfoque en Privacidad",
         url: "https://stark-snowy.vercel.app/",
@@ -136,7 +136,7 @@ const translations = {
         ],
       },
       {
-        id: "SYS_002",
+        id: "Módulo 002",
         title: "Draft",
         subtitle: "Automatización de RFPs de Alta Precisión",
         url: "https://draft-pink.vercel.app",
@@ -151,7 +151,7 @@ const translations = {
         ],
       },
       {
-        id: "SYS_003",
+        id: "Módulo 003",
         title: "CoderStein Events",
         subtitle: "Plataforma Enterprise de Gestión de Eventos",
         url: undefined,

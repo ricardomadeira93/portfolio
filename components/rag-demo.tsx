@@ -203,9 +203,9 @@ Cada respuesta incluye citas deterministas y metadatos de rendimiento para demos
 
 const translations = {
   sectionLabel: {
-    en: "LIVE_DEMONSTRATION",
-    "pt-PT": "DEMONSTRACAO_AO_VIVO",
-    es: "DEMOSTRACIÓN_EN_VIVO",
+    en: "Live Demonstration",
+    "pt-PT": "Demonstração ao Vivo",
+    es: "Demostración en Vivo",
   },
   title: {
     en: "RAG Pipeline",
@@ -219,8 +219,18 @@ const translations = {
   },
   systemContext: {
     en: "This demo is trained on project documentation and system notes.",
-    "pt-PT": "Esta demo está treinada em documentação de projectos e notas do sistema.",
-    es: "Esta demo está entrenada en documentación de proyectos y notas del sistema.",
+    "pt-PT": "Esta demonstração baseia-se na documentação dos projetos e notas do sistema.",
+    es: "Esta demostración se basa en la documentación de los proyectos y notas del sistema.",
+  },
+  systemLabel: {
+    en: "RAG System",
+    "pt-PT": "Sistema RAG",
+    es: "Sistema RAG",
+  },
+  contextLabel: {
+    en: "System Context",
+    "pt-PT": "Contexto do Sistema",
+    es: "Contexto del Sistema",
   },
   tryLabel: {
     en: "Try:",
@@ -233,29 +243,34 @@ const translations = {
     es: "Pregunta algo sobre RAG, proyectos o diseño de sistemas...",
   },
   inputQuery: {
-    en: "INPUT_QUERY",
-    "pt-PT": "INPUT_QUERY",
-    es: "INPUT_QUERY",
+    en: "Input Query",
+    "pt-PT": "Entrada de Pergunta",
+    es: "Entrada de Consulta",
   },
   retrievedChunks: {
-    en: "RETRIEVED_CHUNKS",
-    "pt-PT": "CHUNKS_RECUPERADOS",
-    es: "CHUNKS_RECUPERADOS",
+    en: "Retrieved Chunks",
+    "pt-PT": "Fragmentos Recuperados",
+    es: "Fragmentos Recuperados",
   },
   contextAssembly: {
-    en: "CONTEXT_ASSEMBLY",
-    "pt-PT": "MONTAGEM_CONTEXTO",
-    es: "ENSAMBLAJE_CONTEXTO",
+    en: "Context Assembly",
+    "pt-PT": "Montagem de Contexto",
+    es: "Ensamblaje de Contexto",
   },
   generatedResponse: {
-    en: "GENERATED_RESPONSE",
-    "pt-PT": "RESPOSTA_GERADA",
-    es: "RESPUESTA_GENERADA",
+    en: "Generated Response",
+    "pt-PT": "Resposta Gerada",
+    es: "Respuesta Generada",
   },
   sourcesCited: {
     en: "sources cited",
     "pt-PT": "fontes citadas",
     es: "fuentes citadas",
+  },
+  scoreLabel: {
+    en: "score",
+    "pt-PT": "pontuação",
+    es: "puntuación",
   },
   tokens: {
     en: "tokens",
@@ -263,9 +278,9 @@ const translations = {
     es: "tokens",
   },
   status: {
-    en: "SYSTEM_STATUS",
-    "pt-PT": "ESTADO_SISTEMA",
-    es: "ESTADO_SISTEMA",
+    en: "System Status",
+    "pt-PT": "Estado do Sistema",
+    es: "Estado del Sistema",
   },
   runPipeline: {
     en: "Run Pipeline",
@@ -318,13 +333,13 @@ const translations = {
       query: "query",
       retrieval: "retrieval",
       context: "contexto",
-      generation: "geracao",
+      generation: "geração",
     },
     es: {
       query: "query",
       retrieval: "retrieval",
       context: "contexto",
-      generation: "generacion",
+      generation: "generación",
     },
   },
 }
@@ -441,11 +456,8 @@ export function RAGDemo() {
       {/* Section header */}
       <div className="mb-12">
         <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="font-mono text-xs text-muted-foreground tracking-widest">
-            <span className="text-accent">//</span> {t.sectionLabel[language]}
-          </div>
           <div className="font-mono text-[10px] text-muted-foreground tracking-widest">
-            RAG_SYSTEM
+            {t.systemLabel[language].toUpperCase()}
           </div>
         </div>
         <h2 className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl">
@@ -467,7 +479,7 @@ export function RAGDemo() {
         {/* System context label */}
         <div className="px-6 py-4 border-b border-border bg-surface">
           <div className="font-mono text-[10px] text-accent tracking-widest mb-1">
-            SYSTEM_CONTEXT
+            {t.contextLabel[language].toUpperCase()}
           </div>
           <p className="font-mono text-xs text-muted-foreground">
             {t.systemContext[language]}
@@ -571,7 +583,7 @@ export function RAGDemo() {
                         {chunk.id}
                       </span>
                       <span className="font-mono text-xs text-muted-foreground">
-                        score: {chunk.score.toFixed(2)}
+                        {t.scoreLabel[language]}: {chunk.score.toFixed(2)}
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground line-clamp-2">

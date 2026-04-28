@@ -6,10 +6,20 @@ import { LanguageSwitcher } from "./language-switcher"
 import { ThemeToggle } from "./theme-toggle"
 
 const translations = {
+  identity: {
+    en: "Ricardo Madeira",
+    "pt-PT": "Ricardo Madeira",
+    es: "Ricardo Madeira",
+  },
+  version: {
+    en: "Version 1.0.0",
+    "pt-PT": "Versão 1.0.0",
+    es: "Versión 1.0.0",
+  },
   session: {
-    en: "ACTIVE_SESSION",
-    "pt-PT": "SESSÃO_ATIVA",
-    es: "SESIÓN_ACTIVA",
+    en: "Active Session",
+    "pt-PT": "Sessão Ativa",
+    es: "Sesión Activa",
   },
   role: {
     en: "AI Systems Architect & Fullstack Engineer",
@@ -23,19 +33,19 @@ const translations = {
     es: "Diseño arquitecturas de RAG y flujos de LLM para producción, con enfoque en observabilidad, respuestas deterministas e implementación de privacidad.",
   },
   building: {
-    en: "ORCHESTRATING",
-    "pt-PT": "ORQUESTRANDO",
-    es: "ORQUESTANDO",
+    en: "Orchestrating",
+    "pt-PT": "Orquestrando",
+    es: "Orquestando",
   },
   experience: {
-    en: "ECOSYSTEM",
-    "pt-PT": "ECOSSISTEMA",
-    es: "ECOSISTEMA",
+    en: "Ecosystem",
+    "pt-PT": "Ecossistema",
+    es: "Ecosistema",
   },
   focus: {
-    en: "CORE_PRINCIPLES",
-    "pt-PT": "PRINCÍPIOS_BASE",
-    es: "PRINCIPIOS_BASE",
+    en: "Core Principles",
+    "pt-PT": "Princípios Base",
+    es: "Principios Base",
   },
   buildingItems: {
     en: ["RAG Architectures", "LLM Workflows", "Production Platforms"],
@@ -48,9 +58,9 @@ const translations = {
     es: ["Respuestas Trazables", "Diseño Intuitivo", "Código Mantenible"],
   },
   scroll: {
-    en: "EXPLORE_SYSTEM",
-    "pt-PT": "EXPLORAR_SISTEMA",
-    es: "EXPLORAR_SISTEMA",
+    en: "Explore System",
+    "pt-PT": "Explorar Sistema",
+    es: "Explorar Sistema",
   },
 }
 
@@ -73,7 +83,7 @@ export function Hero() {
             mounted ? "animate-offset-slide" : "opacity-0"
           }`}
         >
-          <span className="text-accent">//</span> Ricardo.Madeira
+          <span className="text-accent">//</span> {t.identity[language]}
         </div>
         <div 
           className={`flex flex-wrap items-center gap-2 sm:justify-end sm:gap-3 md:gap-4 ${
@@ -82,8 +92,8 @@ export function Hero() {
         >
           <LanguageSwitcher />
           <ThemeToggle />
-          <span className="hidden font-mono text-xs text-muted-foreground sm:inline">
-            v1.0.0
+          <span className="hidden font-mono text-[10px] text-muted-foreground sm:inline uppercase tracking-widest">
+            {t.version[language]}
           </span>
         </div>
       </header>
