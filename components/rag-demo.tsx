@@ -34,39 +34,39 @@ const quickPrompts: QuickPrompt[] = [
       es: "¿Qué construye Ricardo?",
     },
     response: {
-      en: `Ricardo builds fullstack applications and AI systems, with a focus on retrieval-augmented generation (RAG).
+      en: `Ricardo specializes in architecting RAG driven applications and robust AI systems.
+      
+Core methodology:
+• Engineering systems that prioritize verifiable grounding
+• Designing interfaces that expose deterministic decision paths
+• Architecting maintainable, enterprise ready infrastructures
 
-His work centers on:
-• building systems that return verifiable answers
-• designing interfaces that expose how AI decisions are made
-• creating maintainable, production-ready architectures
+Current portfolio highlights:
+• STARK: Local First document assistant featuring source tracing
+• Draft: High precision RFP automation leveraging structured retrieval
+• CoderStein: Enterprise platform managing complex live operations`,
+      "pt-PT": `O Ricardo especializa-se em arquitetar aplicações baseadas em RAG e sistemas de IA robustos.
 
-Examples include:
-• STARK: local-first document assistant with citations
-• Draft: RFP automation system using structured retrieval
-• Events Platform: production system managing real users and operations`,
-      "pt-PT": `O Ricardo constrói aplicações fullstack e sistemas de IA, com foco em retrieval-augmented generation (RAG).
+Metodologia base:
+• Engenharia de sistemas que priorizam respostas verificáveis
+• Design de interfaces que expõem caminhos de decisão determinísticos
+• Arquitetura de infraestruturas sustentáveis e prontas para enterprise
 
-O seu trabalho centra-se em:
-• construir sistemas que retornam respostas verificáveis
-• desenhar interfaces que expõem como as decisões de IA são tomadas
-• criar arquitecturas prontas para produção e fáceis de manter
+Destaques do portfólio:
+• STARK: Assistente de documentos Local First com rastreio de fontes
+• Draft: Automação de RFPs de alta precisão via retrieval estruturado
+• CoderStein: Plataforma enterprise que gere operações complexas ao vivo`,
+      es: `Ricardo se especializa en la arquitectura de aplicaciones basadas en RAG y sistemas de IA robustos.
 
-Exemplos incluem:
-• STARK: assistente de documentos local-first com citações
-• Draft: sistema de automação de RFPs usando retrieval estruturado
-• Events Platform: sistema em produção a gerir utilizadores e operações reais`,
-      es: `Ricardo construye aplicaciones fullstack y sistemas de IA, con enfoque en retrieval-augmented generation (RAG).
+Metodología base:
+• Ingeniería de sistemas que priorizan respuestas verificables
+• Diseño de interfaces que exponen caminos de decisión deterministas
+• Arquitectura de infraestructuras mantenibles y listas para enterprise
 
-Su trabajo se centra en:
-• construir sistemas que devuelven respuestas verificables
-• diseñar interfaces que exponen cómo se toman las decisiones de IA
-• crear arquitecturas mantenibles y listas para producción
-
-Ejemplos incluyen:
-• STARK: asistente de documentos local-first con citas
-• Draft: sistema de automatización de RFPs usando retrieval estructurado
-• Events Platform: sistema en producción gestionando usuarios y operaciones reales`,
+Puntos clave del portafolio:
+• STARK: Asistente de documentos Local First con rastreo de fuentes
+• Draft: Automatización de RFPs de alta precisión mediante recuperación estructurada
+• CoderStein: Plataforma enterprise que gestiona operaciones complejas en vivo`,
     },
     chunks: [
       {
@@ -102,30 +102,30 @@ Ejemplos incluyen:
       es: "¿Qué es STARK y cómo funciona?",
     },
     response: {
-      en: `STARK is a local-first AI document assistant designed for privacy and traceability.
+      en: `STARK is a Local First AI document assistant architected for privacy and deterministic traceability.
 
-Key characteristics:
-• Runs entirely on local files — no data leaves your machine
-• Every answer includes citations pointing to specific sources
-• Built for document analysis workflows where accuracy matters
+System architecture:
+• Executes entirely on local files — zero data egress
+• Deterministic source tracing for every generated response
+• Engineered for professional document analysis where precision is critical
 
-The system uses RAG architecture to retrieve relevant chunks from your documents before generating responses, ensuring answers are grounded in your actual data rather than hallucinated.`,
-      "pt-PT": `O STARK é um assistente de documentos de IA local-first, desenhado para privacidade e rastreabilidade.
+The platform utilizes a RAG architecture to orchestrate document retrieval before generation, ensuring that every answer is grounded in your specific data ecosystem.`,
+      "pt-PT": `O STARK é um assistente de documentos Local First, arquitetado para privacidade e rastreabilidade determinística.
 
-Características principais:
-• Corre inteiramente em ficheiros locais — nenhum dado sai da sua máquina
-• Cada resposta inclui citações que apontam para fontes específicas
-• Construído para workflows de análise de documentos onde a precisão importa
+Arquitetura do sistema:
+• Execução inteiramente local — sem saída de dados
+• Rastreio determinístico de fontes para cada resposta gerada
+• Desenhado para análise documental profissional onde a precisão é crítica
 
-O sistema usa arquitectura RAG para recuperar chunks relevantes dos seus documentos antes de gerar respostas, garantindo que as respostas se baseiam nos seus dados reais em vez de serem alucinadas.`,
-      es: `STARK es un asistente de documentos de IA local-first diseñado para privacidad y trazabilidad.
+A plataforma utiliza uma arquitetura RAG para orquestrar o retrieval antes da geração, garantindo que cada resposta é fundamentada no seu ecossistema de dados específico.`,
+      es: `STARK es un asistente de documentos Local First, arquitectado para privacidad y trazabilidad determinista.
 
-Características clave:
-• Funciona completamente en archivos locales — ningún dato sale de tu máquina
-• Cada respuesta incluye citas que apuntan a fuentes específicas
-• Construido para flujos de trabajo de análisis de documentos donde la precisión importa
+Arquitectura del sistema:
+• Ejecución íntegramente local — sin salida de datos
+• Rastreo determinista de fuentes para cada respuesta generada
+• Diseñado para análisis documental profesional donde la precisión es crítica
 
-El sistema usa arquitectura RAG para recuperar chunks relevantes de tus documentos antes de generar respuestas, asegurando que las respuestas se basen en tus datos reales en lugar de ser alucinadas.`,
+La plataforma utiliza una arquitectura RAG para orquestar la recuperación antes de la generación, asegurando que cada respuesta esté fundamentada en su ecosistema de datos específico.`,
     },
     chunks: [
       {
@@ -155,33 +155,33 @@ El sistema usa arquitectura RAG para recuperar chunks relevantes de tus document
       es: "¿Qué demuestra este sistema?",
     },
     response: {
-      en: `This demo visualizes a RAG (Retrieval-Augmented Generation) pipeline in action.
+      en: `This demonstration visualizes the RAG (Retrieval Augmented Generation) lifecycle in action.
 
 The four stages shown:
-• Query: Your question is processed and embedded
-• Retrieval: Relevant document chunks are found via similarity search
-• Context: Retrieved chunks are assembled into a coherent context window
-• Generation: The LLM generates a response grounded in the retrieved context
+• Query: Your question is processed and vectorized for semantic search
+• Retrieval: Highly relevant document chunks are identified via similarity search
+• Context: Retrieved data is orchestrated into a coherent context window
+• Generation: The LLM generates a grounded response based on the assembled context
 
-Each response includes source citations and metadata (tokens, latency) to demonstrate the traceability that RAG enables.`,
-      "pt-PT": `Esta demo visualiza um pipeline RAG (Retrieval-Augmented Generation) em acção.
+Every response includes deterministic citations and performance metadata to demonstrate the transparency that RAG enables.`,
+      "pt-PT": `Esta demonstração visualiza o ciclo de vida RAG (Retrieval Augmented Generation) em ação.
 
 As quatro fases mostradas:
-• Query: A sua pergunta é processada e convertida em embedding
-• Retrieval: Chunks de documentos relevantes são encontrados via pesquisa por similaridade
-• Context: Os chunks recuperados são montados numa janela de contexto coerente
-• Generation: O LLM gera uma resposta baseada no contexto recuperado
+• Query: A sua pergunta é processada e vetorizada para pesquisa semântica
+• Retrieval: Chunks altamente relevantes são identificados via pesquisa por similaridade
+• Context: Os dados recuperados são orquestrados numa janela de contexto coerente
+• Generation: O LLM gera uma resposta fundamentada no contexto montado
 
-Cada resposta inclui citações de fontes e metadados (tokens, latência) para demonstrar a rastreabilidade que o RAG permite.`,
-      es: `Esta demo visualiza un pipeline RAG (Retrieval-Augmented Generation) en acción.
+Cada resposta inclui citações determinísticas e metadados de performance para demonstrar a transparência que o RAG permite.`,
+      es: `Esta demostración visualiza el ciclo de vida RAG (Retrieval Augmented Generation) en acción.
 
 Las cuatro etapas mostradas:
-• Query: Tu pregunta es procesada y convertida en embedding
-• Retrieval: Se encuentran chunks de documentos relevantes mediante búsqueda por similitud
-• Context: Los chunks recuperados se ensamblan en una ventana de contexto coherente
-• Generation: El LLM genera una respuesta basada en el contexto recuperado
+• Query: Tu pregunta es procesada y vectorizada para búsqueda semántica
+• Retrieval: Se identifican chunks altamente relevantes mediante búsqueda por similitud
+• Context: Los datos recuperados se orquestan en una ventana de contexto coherente
+• Generation: El LLM genera una respuesta fundamentada en el contexto ensamblado
 
-Cada respuesta incluye citas de fuentes y metadatos (tokens, latencia) para demostrar la trazabilidad que RAG permite.`,
+Cada respuesta incluye citas deterministas y metadatos de rendimiento para demostrar la transparencia que RAG permite.`,
     },
     chunks: [
       {
@@ -213,9 +213,9 @@ const translations = {
     es: "Pipeline RAG",
   },
   subtitle: {
-    en: "Interactive visualization of retrieval-augmented generation. Ask a question to see how queries transform into contextual responses.",
-    "pt-PT": "Visualização interactiva de retrieval-augmented generation. Faça uma pergunta para ver como as queries se transformam em respostas contextuais.",
-    es: "Visualización interactiva de retrieval-augmented generation. Haz una pregunta para ver cómo las queries se transforman en respuestas contextuales.",
+    en: "Interactive exploration of the RAG lifecycle. Experience how raw queries are transformed into verifiable, contextually grounded responses.",
+    "pt-PT": "Exploração interativa do ciclo de vida RAG. Veja como as queries são transformadas em respostas verificáveis e fundamentadas em contexto.",
+    es: "Exploración interactiva del ciclo de vida RAG. Vea cómo las queries se transforman en respuestas verificables y fundamentadas en contexto.",
   },
   systemContext: {
     en: "This demo is trained on project documentation and system notes.",
@@ -263,9 +263,9 @@ const translations = {
     es: "tokens",
   },
   status: {
-    en: "STATUS",
-    "pt-PT": "ESTADO",
-    es: "ESTADO",
+    en: "SYSTEM_STATUS",
+    "pt-PT": "ESTADO_SISTEMA",
+    es: "ESTADO_SISTEMA",
   },
   runPipeline: {
     en: "Run Pipeline",

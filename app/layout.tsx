@@ -9,8 +9,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Ricardo Madeira | AI Systems Engineer',
-  description: 'AI Systems Engineer specializing in RAG architectures, retrieval systems, and production ML infrastructure.',
+  title: 'Ricardo Madeira | AI Systems Architect',
+  description: 'AI Systems Architect & Fullstack Engineer specializing in production grade RAG architectures, LLM orchestration, and privacy centric systems.',
   icons: {
     icon: [
       {

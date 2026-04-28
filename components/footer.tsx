@@ -17,9 +17,9 @@ const translations = {
     es: "INICIAR_CONTACTO",
   },
   title: {
-    en: "Let's work\ntogether.",
-    "pt-PT": "Vamos trabalhar\njuntos.",
-    es: "Trabajemos\njuntos.",
+    en: "Available for\nselect partnerships.",
+    "pt-PT": "Disponível para\nparcerias selecionadas.",
+    es: "Disponible para\nalianzas seleccionadas.",
   },
   externalLinks: {
     en: "EXTERNAL_LINKS",
