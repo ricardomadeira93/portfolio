@@ -1,127 +1,37 @@
-# ricardo-madeira
+# ricardomadeira.dev
 
+The source of my portfolio, [ricardomadeira.dev](https://www.ricardomadeira.dev/). It is a single page in English, Portuguese and Spanish that shows what I build and where I have worked.
 
-A portfolio built as a system interface.
+## What is on the page
 
-This is not a grid of projects. It is a way of showing how I think about building software. Structured, inspectable, and grounded in real use.
+- **Header.** Stays at the top while scrolling, with links to the projects and contact sections, a language select and the theme toggle.
+- **Hero.** Role, a short summary and three columns: domains, employers and stack.
+- **Projects.** Five cards with the key points first, then the technology and a detail list: a geospatial portal for the public administration, Aorus Tale, STARK, Draft and CoderStein Events. Cards link to a live site where one is public.
+- **RAG pipeline demo.** An animated walkthrough of query, retrieval, context and generation. It is a simulation: the retrieved passages, scores and timings are prepared data, not a live retrieval system.
+- **Contact.** Links to GitHub, LinkedIn and email.
 
----
+## How it is built
 
-## Overview
+- **Next.js 16** (App Router), **React 19**, **TypeScript** and **Tailwind CSS 4**. The animations are plain CSS.
+- **Languages.** English, Portuguese (Portugal) and Spanish, chosen with a select. The choice is remembered in the browser and defaults to the browser language.
+- **Theme.** Light and dark through `next-themes`. Switching runs a short wipe from the right edge, built on the View Transitions API (`lib/theme-transition.ts`). It falls back to an instant switch without that API or when the visitor prefers reduced motion.
+- **Findability.** `robots.txt`, `sitemap.xml`, an `llms.txt` summary, Person structured data (JSON-LD), a canonical URL and Open Graph tags.
+- **Analytics.** Vercel Analytics in production only.
 
-The portfolio presents work as connected systems instead of isolated pieces.
+## Running it
 
-It focuses on clarity, interaction, and structure.
+```bash
+pnpm install
+pnpm dev
+```
 
-The goal is simple: show how things work, not just what they are.
-
----
-
-## Sections
-
-### Identity
-
-Clear positioning:
-Fullstack Developer and AI Engineer
-
-Includes a small proof layer:
-what I build  
-where I have worked  
-what I care about  
-
----
-
-### Projects
-
-Projects are not shown as cards.
-
-Each one is treated as a module:
-
-STARK  
-Local-first document assistant with citations
-
-Draft  
-RFP automation using retrieval and structured prompts
-
-CoderStein Events Platform  
-Production system managing real users and operations
-
-Each module highlights:
-what was built  
-why it exists  
-how it works  
-
----
-
-### Live Demonstration
-
-Interactive RAG pipeline showing:
-
-query  
-retrieval  
-context  
-generation  
-
-The demo exposes the internal steps and shows sources. No black box behavior.
-
-You can ask about the projects or how the system works.
-
----
-
-### Experience
-
-Betacode (2024–present)  
-CoderStein (2023–2024)  
-Forma Studio (2022–present)  
-
----
-
-## Design
-
-Typography comes first. Layout does the work.
-
-No decorative UI. No generic components.
-
-The interface is meant to feel structured and deliberate. More like a system than a landing page.
-
----
-
-## Tech Stack
-
-Next.js (App Router)  
-TypeScript  
-Tailwind CSS  
-Framer Motion  
-
----
-
-## Running locally
-
-npm install  
-npm run dev  
-
----
+Then open http://localhost:3000. `pnpm build` makes a production build and `pnpm lint` runs ESLint.
 
 ## Deployment
 
-Deployed on Vercel.
+Pushes to `main` deploy on Vercel to https://www.ricardomadeira.dev/.
 
----
+## Known limits
 
-## Notes
-
-This portfolio is intentionally restrained.
-
-The goal is not to impress with visuals alone, but to make it clear:
-
-what I build  
-how I think  
-what I care about  
-
----
-
-## Contact
-
-GitHub  
-LinkedIn  
-Email  
+- The language is set in the browser, not in the URL, so only one language version is indexable by search engines.
+- The RAG demo is simulated, as described above.

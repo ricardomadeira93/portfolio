@@ -10,7 +10,6 @@ const body = `# Ricardo Madeira
 
 - Betacode, 2024 to May 2026: Next.js, React, Python and FastAPI applications in production, including RAG pipelines and LLM integrations.
 - CoderStein Portugal, July 2023 to July 2024: frontend on a large-scale event management platform.
-- Forma Studio, since October 2022: freelance websites and landing pages for small businesses.
 
 ## Projects
 

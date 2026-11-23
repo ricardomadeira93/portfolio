@@ -32,7 +32,7 @@ const translations = {
   },
 }
 
-const employers = ["Winning", "Betacode", "CoderStein", "Forma Studio"]
+const employers = ["Winning", "Betacode", "CoderStein"]
 
 const columns = [
   {
