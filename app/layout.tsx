@@ -8,9 +8,38 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const siteUrl = 'https://www.ricardomadeira.dev'
+const siteDescription =
+  'Full stack developer in Portugal, working remotely. Four years building web applications in production with React, Next.js, TypeScript, Python, FastAPI and .NET: RAG pipelines and LLM features, a geospatial portal for the public administration, payment and back-office systems.'
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Ricardo Madeira',
+  url: siteUrl,
+  jobTitle: 'Full Stack Developer',
+  description: siteDescription,
+  knowsLanguage: ['pt', 'en', 'es'],
+  worksFor: { '@type': 'Organization', name: 'Winning' },
+  address: { '@type': 'PostalAddress', addressCountry: 'PT' },
+  sameAs: [
+    'https://github.com/ricardomadeira93',
+    'https://www.linkedin.com/in/ricardo-madeira-8ab393280/',
+  ],
+}
+
 export const metadata: Metadata = {
-  title: 'Ricardo Madeira | AI Systems Architect',
-  description: 'AI Systems Architect & Fullstack Engineer specializing in production grade RAG architectures, LLM orchestration, and privacy centric systems.',
+  metadataBase: new URL(siteUrl),
+  title: 'Ricardo Madeira | Full Stack Developer',
+  description: siteDescription,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'profile',
+    url: siteUrl,
+    title: 'Ricardo Madeira | Full Stack Developer',
+    description: siteDescription,
+    siteName: 'Ricardo Madeira',
+  },
   icons: {
     icon: [
       {
@@ -38,6 +67,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background" suppressHydrationWarning>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

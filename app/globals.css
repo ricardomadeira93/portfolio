@@ -272,3 +272,61 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-strong);
 }
+
+/* Theme switch wipe. The new theme is revealed from the right edge to the left
+   led by a thin accent line. An even ease, so the reveal is visible across the whole run.
+   Only active while html[data-theme-wipe] is set (lib/theme-transition.ts). */
+.theme-wipe-edge {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100vh;
+  background: var(--accent);
+  view-transition-name: theme-wipe-edge;
+  pointer-events: none;
+}
+
+html[data-theme-wipe]::view-transition-old(root),
+html[data-theme-wipe]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html[data-theme-wipe]::view-transition-old(root) {
+  z-index: 1;
+}
+
+html[data-theme-wipe]::view-transition-new(root) {
+  z-index: 2;
+  animation: theme-wipe 480ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+html[data-theme-wipe]::view-transition-old(theme-wipe-edge) {
+  display: none;
+}
+
+/* The line is animated on its own image layer. Overriding the group would drop
+   the size the browser gives it. */
+html[data-theme-wipe]::view-transition-new(theme-wipe-edge) {
+  z-index: 3;
+  animation: theme-wipe-edge 480ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes theme-wipe {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes theme-wipe-edge {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100vw + 2px));
+  }
+}

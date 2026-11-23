@@ -1,45 +1,34 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "./language-provider"
 
 const links = [
-  { label: "GitHub", href: "https://github.com/ricardomadeira93/", id: "01" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/ricardo-madeira-8ab393280/", id: "02" },
-  { label: "Email", href: "mailto:madeiragpersonal@gmail.com", id: "03" },
+  { label: "GitHub", href: "https://github.com/ricardomadeira93/" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ricardo-madeira-8ab393280/",
+  },
+  { label: "Email", href: "mailto:madeiragpersonal@gmail.com" },
 ]
 
 const translations = {
-  sectionLabel: {
-    en: "Initiate Contact",
-    "pt-PT": "Iniciar Contacto",
-    es: "Iniciar Contacto",
-  },
   title: {
-    en: "Available for\nselect partnerships.",
-    "pt-PT": "Disponível para\nparcerias selecionadas.",
-    es: "Disponible para\nalianzas seleccionadas.",
+    en: "Open to new projects.",
+    "pt-PT": "Disponível para novos projetos.",
+    es: "Disponible para nuevos proyectos.",
   },
-  externalLinks: {
-    en: "External Links",
-    "pt-PT": "Links Externos",
-    es: "Enlaces Externos",
+  body: {
+    en: "Email is the quickest way to reach me. I answer in English, Portuguese or Spanish.",
+    "pt-PT":
+      "O e-mail é a forma mais rápida de me contactar. Respondo em português, inglês ou espanhol.",
+    es: "El correo es la forma más rápida de contactarme. Respondo en español, portugués o inglés.",
   },
-  open: {
-    en: "OPEN →",
-    "pt-PT": "ABRIR →",
-    es: "ABRIR →",
-  },
-  builtWithClarity: {
-    en: "2024 Ricardo Madeira. Built with clarity.",
-    "pt-PT": "2024 Ricardo Madeira. Construído com clareza.",
-    es: "2024 Ricardo Madeira. Construido con claridad.",
-  },
-  systemActive: {
-    en: "System Active",
-    "pt-PT": "Sistema Ativo",
-    es: "Sistema Activo",
+  rights: {
+    en: "© 2026 Ricardo Madeira",
+    "pt-PT": "© 2026 Ricardo Madeira",
+    es: "© 2026 Ricardo Madeira",
   },
 }
 
@@ -48,8 +37,14 @@ export function Footer() {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const { language } = useLanguage()
+  const t = translations
 
   useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -57,7 +52,7 @@ export function Footer() {
           observer.disconnect()
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     )
 
     if (ref.current) {
@@ -67,106 +62,72 @@ export function Footer() {
     return () => observer.disconnect()
   }, [])
 
-  const t = translations
-  const titleLines = t.title[language].split("\n")
-
   return (
-    <footer ref={ref} className="border-t border-border px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24">
-      <div className="max-w-6xl mx-auto">
-        {/* Main content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left - CTA */}
+    <footer
+      ref={ref}
+      className="border-t border-border px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24"
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">
           <div>
-            <div 
+            <h2
               className={cn(
-                "font-mono text-xs text-muted-foreground mb-6 tracking-widest",
-                isVisible ? "animate-offset-slide" : "opacity-0"
-              )}
-            >
-              <span className="text-accent">//</span> {t.sectionLabel[language]}
-            </div>
-            <h2 
-              className={cn(
-                "text-3xl font-light leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl",
+                "text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl",
                 isVisible ? "animate-mask-reveal delay-100" : "opacity-0"
               )}
               style={{ clipPath: isVisible ? undefined : "inset(0 100% 0 0)" }}
             >
-              {titleLines[0]}
-              <br />
-              <span className="text-accent">{titleLines[1]}</span>
+              {t.title[language]}
             </h2>
-          </div>
-
-          {/* Right - Links */}
-          <div className="flex flex-col justify-end">
-            <div 
+            <p
               className={cn(
-                "font-mono text-xs text-muted-foreground mb-6 tracking-widest",
+                "mt-6 max-w-md text-base leading-relaxed text-muted-foreground",
                 isVisible ? "animate-offset-slide delay-200" : "opacity-0"
               )}
             >
-              {t.externalLinks[language]}
-            </div>
-            <nav className="flex flex-col gap-4">
-              {links.map((link, i) => (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                  className={cn(
-                    "group relative flex flex-col items-start gap-2 border-b border-border py-4 transition-colors duration-300 sm:flex-row sm:items-center sm:justify-between",
-                    hoveredLink === link.id && "border-accent",
-                    isVisible ? "animate-offset-slide" : "opacity-0"
-                  )}
-                  style={{ animationDelay: `${300 + i * 100}ms` }}
-                  onMouseEnter={() => setHoveredLink(link.id)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                >
-                  <span className="flex items-center gap-3 sm:gap-4">
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {link.id}
-                    </span>
-                    <span className="text-xl font-light tracking-wide group-hover:text-accent transition-colors">
-                      {link.label}
-                    </span>
-                  </span>
-                  <span 
-                    className={cn(
-                      "font-mono text-xs text-muted-foreground transition-all duration-300",
-                      "opacity-100 sm:-translate-x-2 sm:opacity-0",
-                      hoveredLink === link.id && "sm:translate-x-0 sm:opacity-100"
-                    )}
-                  >
-                    {t.open[language]}
-                  </span>
-                </a>
-              ))}
-            </nav>
+              {t.body[language]}
+            </p>
           </div>
+
+          <nav className="flex flex-col justify-end">
+            {links.map((link, i) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                className={cn(
+                  "flex items-center justify-between border-b border-border py-4 text-xl transition-colors duration-300",
+                  hoveredLink === link.label && "border-accent text-accent",
+                  isVisible ? "animate-offset-slide" : "opacity-0"
+                )}
+                style={{ animationDelay: `${300 + i * 100}ms` }}
+                onMouseEnter={() => setHoveredLink(link.label)}
+                onMouseLeave={() => setHoveredLink(null)}
+              >
+                <span>{link.label}</span>
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "transition-transform duration-300",
+                    hoveredLink === link.label && "translate-x-1 -translate-y-1"
+                  )}
+                >
+                  ↗
+                </span>
+              </a>
+            ))}
+          </nav>
         </div>
 
-        {/* Bottom bar */}
-        <div 
+        <p
           className={cn(
-            "mt-24 pt-8 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-4",
+            "mt-24 border-t border-border pt-8 text-sm text-muted-foreground",
             isVisible ? "animate-offset-slide delay-600" : "opacity-0"
           )}
         >
-          <div className="font-mono text-xs text-muted-foreground">
-            <span className="text-accent">©</span> {t.builtWithClarity[language]}
-          </div>
-          <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-muted-foreground sm:gap-6">
-            <span>
-              <span className="text-accent">03</span> / 03
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-accent animate-pulse" />
-              {t.systemActive[language]}
-            </span>
-          </div>
-        </div>
+          {t.rights[language]}
+        </p>
       </div>
     </footer>
   )

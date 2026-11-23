@@ -105,7 +105,7 @@ Puntos clave del portafolio:
       en: `STARK is a Local First AI document assistant architected for privacy and deterministic traceability.
 
 System architecture:
-• Executes entirely on local files — zero data egress
+• Executes entirely on local files, zero data egress
 • Deterministic source tracing for every generated response
 • Engineered for professional document analysis where precision is critical
 
@@ -113,7 +113,7 @@ The platform utilizes a RAG architecture to orchestrate document retrieval befor
       "pt-PT": `O STARK é um assistente de documentos Local First, arquitetado para privacidade e rastreabilidade determinística.
 
 Arquitetura do sistema:
-• Execução inteiramente local — sem saída de dados
+• Execução inteiramente local, sem saída de dados
 • Rastreio determinístico de fontes para cada resposta gerada
 • Desenhado para análise documental profissional onde a precisão é crítica
 
@@ -121,7 +121,7 @@ A plataforma utiliza uma arquitetura RAG para orquestrar o retrieval antes da ge
       es: `STARK es un asistente de documentos Local First, arquitectado para privacidad y trazabilidad determinista.
 
 Arquitectura del sistema:
-• Ejecución íntegramente local — sin salida de datos
+• Ejecución íntegramente local, sin salida de datos
 • Rastreo determinista de fuentes para cada respuesta generada
 • Diseñado para análisis documental profesional donde la precisión es crítica
 
@@ -137,7 +137,7 @@ La plataforma utiliza una arquitectura RAG para orquestar la recuperación antes
       {
         id: "chunk_002",
         score: 0.89,
-        text: "Emphasis on privacy and traceable answers — every response shows its sources...",
+        text: "Emphasis on privacy and traceable answers, every response shows its sources...",
         source: "projects/stark.md",
       },
     ],
@@ -455,31 +455,20 @@ export function RAGDemo() {
     >
       {/* Section header */}
       <div className="mb-12">
-        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="font-mono text-[10px] text-muted-foreground tracking-widest">
-            {t.systemLabel[language].toUpperCase()}
-          </div>
-        </div>
-        <h2 className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl">
+        <h2 className="text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">
           {t.title[language]}
         </h2>
-        <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
+        <p className="mt-4 max-w-xl text-base text-muted-foreground">
           {t.subtitle[language]}
         </p>
       </div>
 
       {/* Demo container */}
-      <div
-        className={cn(
-          "relative border border-border bg-surface-elevated",
-          isVisible ? "animate-mask-reveal" : "opacity-0"
-        )}
-        style={{ clipPath: isVisible ? undefined : "inset(0 100% 0 0)" }}
-      >
+      <div className="relative border border-border bg-surface-elevated">
         {/* System context label */}
         <div className="px-6 py-4 border-b border-border bg-surface">
-          <div className="font-mono text-[10px] text-accent tracking-widest mb-1">
-            {t.contextLabel[language].toUpperCase()}
+          <div className="mb-1 text-sm font-medium text-accent">
+            {t.contextLabel[language]}
           </div>
           <p className="font-mono text-xs text-muted-foreground">
             {t.systemContext[language]}
@@ -488,7 +477,7 @@ export function RAGDemo() {
 
         {/* Quick prompts */}
         <div className="px-6 py-4 border-b border-border">
-          <div className="font-mono text-[10px] text-muted-foreground tracking-widest mb-3">
+          <div className="mb-3 text-sm text-muted-foreground">
             {t.tryLabel[language]}
           </div>
           <div className="flex flex-wrap gap-2">
@@ -518,7 +507,7 @@ export function RAGDemo() {
               <div
                 key={s}
                 className={cn(
-                  "px-3 py-3 font-mono text-[10px] uppercase tracking-wider transition-colors duration-300 sm:px-4 sm:text-xs",
+                  "px-3 py-3 text-sm transition-colors duration-300 sm:px-4",
                   "border-r border-b border-border even:border-r-0 sm:border-b-0 sm:even:border-r sm:last:border-r-0",
                   stage === s && "bg-accent/10 text-accent",
                   stage !== "idle" &&
@@ -700,13 +689,13 @@ export function RAGDemo() {
           <div className="font-mono text-xs text-muted-foreground">
             {t.status[language]}:{" "}
             <span className={cn(stage !== "idle" && "text-accent")}>
-              {stage.toUpperCase()}
+              {stage}
             </span>
           </div>
           {stage !== "idle" && (
             <button
               onClick={() => resetDemo()}
-              className="w-full border border-border px-6 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all duration-300 hover:border-foreground hover:text-foreground sm:w-auto"
+              className="w-full border border-border px-6 py-2 text-sm text-muted-foreground transition-all duration-300 hover:border-foreground hover:text-foreground sm:w-auto"
             >
               {t.reset[language]}
             </button>

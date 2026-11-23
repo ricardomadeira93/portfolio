@@ -2,6 +2,8 @@
 
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import { flushSync } from "react-dom"
+import { withThemeTransition } from "@/lib/theme-transition"
 import { cn } from "@/lib/utils"
 
 export function ThemeToggle() {
@@ -11,6 +13,17 @@ export function ThemeToggle() {
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  function switchTheme(next: "light" | "dark") {
+    void withThemeTransition(() => {
+      // The snapshot of the new theme is taken as soon as this callback returns,
+      // so the class has to be in place synchronously.
+      const root = document.documentElement
+      root.classList.toggle("dark", next === "dark")
+      root.style.colorScheme = next
+      flushSync(() => setTheme(next))
+    })
+  }
 
   if (!mounted) {
     return (
@@ -22,7 +35,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={() => switchTheme(isDark ? "light" : "dark")}
       className={cn(
         "group relative flex h-8 items-center gap-1 border border-border bg-surface px-2.5 py-1.5 sm:px-3",
         "font-mono text-xs uppercase tracking-wider",

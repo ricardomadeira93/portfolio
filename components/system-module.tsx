@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface SystemModuleProps {
-  id: string
   title: string
   subtitle?: string
+  meta?: string
+  highlights?: string[]
   tags: string[]
   description: string
   url?: string
@@ -19,21 +20,26 @@ interface SystemModuleProps {
 }
 
 export function SystemModule({
-  id,
   title,
   subtitle,
+  highlights,
   tags,
   description,
   url,
-  ctaLabel = "View Project",
+  ctaLabel = "View project",
   details,
   className,
 }: SystemModuleProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -41,7 +47,7 @@ export function SystemModule({
           observer.disconnect()
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     )
 
     if (ref.current) {
@@ -52,7 +58,7 @@ export function SystemModule({
   }, [])
 
   return (
-    <div
+    <article
       ref={ref}
       className={cn(
         "group relative border border-border bg-surface transition-colors duration-300",
@@ -63,27 +69,18 @@ export function SystemModule({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Offset border accent */}
-      <div 
+      <div
         className={cn(
-          "absolute -bottom-1 -right-1 w-full h-full border border-accent/20 -z-10 transition-all duration-500",
-          isHovered && "border-accent/40 -bottom-2 -right-2"
-        )} 
+          "absolute -bottom-1 -right-1 -z-10 h-full w-full border border-accent/20 transition-all duration-500",
+          isHovered && "-bottom-2 -right-2 border-accent/40"
+        )}
       />
 
-      {/* Module header */}
-      <div className="flex items-start justify-between gap-4 p-5 sm:p-6 border-b border-border">
+      <header className="flex items-start justify-between gap-4 border-b border-border p-5 sm:p-6">
         <div className="min-w-0">
-          <div 
+          <h3
             className={cn(
-              "font-mono text-xs text-muted-foreground mb-2 tracking-wider",
-              isVisible ? "animate-offset-slide" : "opacity-0"
-            )}
-          >
-            <span className="text-accent">{id}</span>
-          </div>
-          <h3 
-            className={cn(
-              "text-2xl font-light tracking-tight md:text-3xl",
+              "text-2xl font-medium tracking-tight md:text-3xl",
               isVisible ? "animate-mask-reveal delay-100" : "opacity-0"
             )}
             style={{ clipPath: isVisible ? undefined : "inset(0 100% 0 0)" }}
@@ -91,9 +88,9 @@ export function SystemModule({
             {title}
           </h3>
           {subtitle && (
-            <p 
+            <p
               className={cn(
-                "mt-1 text-sm text-muted-foreground sm:text-base",
+                "mt-1 text-base text-muted-foreground",
                 isVisible ? "animate-offset-slide delay-200" : "opacity-0"
               )}
             >
@@ -101,99 +98,106 @@ export function SystemModule({
             </p>
           )}
         </div>
-
-        {/* Status indicator */}
-        <div 
+        <span
+          aria-hidden="true"
           className={cn(
-            "flex items-center gap-2",
-            isVisible ? "animate-offset-slide delay-100" : "opacity-0"
-          )}
-        >
-          <span className={cn(
-            "w-2 h-2 transition-colors duration-300",
+            "mt-2 h-2 w-2 shrink-0 transition-colors duration-300",
             isHovered ? "bg-accent" : "bg-muted-foreground/50"
-          )} />
-        </div>
-      </div>
+          )}
+        />
+      </header>
 
-      {/* Tags row */}
-      <div 
+      <ul
         className={cn(
-          "flex flex-wrap gap-2 px-5 py-4 sm:px-6 border-b border-border",
+          "flex flex-wrap gap-2 border-b border-border px-5 py-4 sm:px-6",
           isVisible ? "animate-offset-slide delay-200" : "opacity-0"
         )}
       >
         {tags.map((tag) => (
-          <span
+          <li
             key={tag}
-            className="font-mono text-xs px-2 py-1 border border-border text-muted-foreground hover:border-accent/50 hover:text-foreground transition-colors"
+            className="border border-border px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:border-accent/50 hover:text-foreground"
           >
             {tag}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      {/* Description */}
       <div className="p-5 sm:p-6">
-        <p 
+        {highlights && highlights.length > 0 && (
+          <ul
+            className={cn(
+              "mb-5 space-y-2",
+              isVisible ? "animate-offset-slide delay-300" : "opacity-0"
+            )}
+          >
+            {highlights.map((item) => (
+              <li
+                key={item}
+                className="flex gap-3 text-base font-medium leading-snug text-foreground"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 bg-accent"
+                />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <p
           className={cn(
-            "text-sm leading-relaxed text-muted-foreground sm:text-base",
+            "text-base leading-relaxed text-muted-foreground",
             isVisible ? "animate-offset-slide delay-300" : "opacity-0"
           )}
         >
           {description}
         </p>
 
-        {url && (
-          <div
+        {details && (
+          <dl
             className={cn(
-              "mt-6",
+              "mt-6 grid grid-cols-1 gap-x-6 gap-y-4 border-t border-border pt-6 sm:grid-cols-2",
               isVisible ? "animate-offset-slide delay-400" : "opacity-0"
             )}
           >
-            <a
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 border border-border bg-surface px-4 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
-            >
-              <span>{ctaLabel}</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
+            {details.map((detail) => (
+              <div key={detail.label}>
+                <dt className="mb-1 text-sm font-medium text-foreground">
+                  {detail.label}
+                </dt>
+                <dd className="text-sm leading-relaxed text-muted-foreground">
+                  {detail.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         )}
 
-        {/* Details panel - reveals on hover */}
-        {details && (
-          <div 
+        {url && (
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
             className={cn(
-              "mt-6 max-h-[32rem] overflow-hidden border-t border-border pt-6 opacity-100 transition-all duration-500",
-              "md:max-h-0 md:opacity-0 md:border-transparent",
-              isHovered && "md:max-h-96 md:opacity-100 md:border-border"
+              "mt-6 inline-flex items-center gap-2 border border-border px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-accent hover:text-accent",
+              isVisible ? "animate-offset-slide delay-400" : "opacity-0"
             )}
           >
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {details.map((detail) => (
-                <div key={detail.label}>
-                  <div className="font-mono text-xs text-muted-foreground mb-1">
-                    {detail.label}
-                  </div>
-                  <div className="text-sm">{detail.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+            <span>{ctaLabel}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
         )}
       </div>
 
-      {/* Interactive prompt */}
-      <div 
+      {/* Bottom line that draws in on hover */}
+      <div
         className={cn(
-          "absolute bottom-0 left-0 right-0 h-px bg-accent origin-left transition-transform duration-500",
-          "scale-x-100 md:scale-x-0",
-          isHovered && "md:scale-x-100"
-        )} 
+          "absolute bottom-0 left-0 right-0 h-px origin-left scale-x-0 bg-accent transition-transform duration-500",
+          isHovered && "scale-x-100"
+        )}
       />
-    </div>
+    </article>
   )
 }
