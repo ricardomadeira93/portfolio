@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
@@ -11,6 +12,8 @@ interface SystemModuleProps {
   tags: string[]
   description: string
   url?: string
+  caseHref?: string
+  caseLabel?: string
   ctaLabel?: string
   details?: {
     label: string
@@ -26,6 +29,8 @@ export function SystemModule({
   tags,
   description,
   url,
+  caseHref,
+  caseLabel = "Read the case study",
   ctaLabel = "View project",
   details,
   className,
@@ -175,19 +180,34 @@ export function SystemModule({
           </dl>
         )}
 
-        {url && (
-          <a
-            href={url}
-            target="_blank"
-            rel="noreferrer"
+        {(url || caseHref) && (
+          <div
             className={cn(
-              "mt-6 inline-flex items-center gap-2 border border-border px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-accent hover:text-accent",
+              "mt-6 flex flex-wrap gap-3",
               isVisible ? "animate-offset-slide delay-400" : "opacity-0"
             )}
           >
-            <span>{ctaLabel}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
+            {caseHref && (
+              <Link
+                href={caseHref}
+                className="inline-flex items-center gap-2 border border-foreground px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
+              >
+                <span>{caseLabel}</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            )}
+            {url && (
+              <a
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border border-border px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
+              >
+                <span>{ctaLabel}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
         )}
       </div>
 

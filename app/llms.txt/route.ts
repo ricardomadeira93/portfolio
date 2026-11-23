@@ -16,6 +16,10 @@ const body = `# Ricardo Madeira
 - STARK: local document assistant with hybrid retrieval (semantic search, BM25, cross-encoder reranking). https://stark-snowy.vercel.app/
 - Draft: RFP and security questionnaire automation with LangChain and Pinecone. https://draft-pink.vercel.app
 
+## Case studies
+
+- A declined card retry cancelled an order that was paid for: how a payment webhook's order model was fixed so an approved retry is never dropped. https://www.ricardomadeira.dev/case-studies/payment-retries
+
 ## Links
 
 - Site: https://www.ricardomadeira.dev/

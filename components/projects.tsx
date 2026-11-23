@@ -8,6 +8,7 @@ interface Project {
   subtitle: string
   meta?: string
   url?: string
+  caseHref?: string
   tags: string[]
   description: string
   details: { label: string; value: string }[]
@@ -28,6 +29,11 @@ const translations = {
     en: "Context",
     "pt-PT": "Contexto",
     es: "Contexto",
+  },
+  caseStudy: {
+    en: "Read the case study",
+    "pt-PT": "Ler o caso de estudo",
+    es: "Leer el caso de estudio",
   },
   viewProject: {
     en: "View project",
@@ -77,6 +83,7 @@ const projects: Record<SiteLanguage, Project[]> = {
       subtitle: "Website and operations system for an online game",
       meta: "Since May 2026",
       url: "https://www.aorustale.com/",
+      caseHref: "/case-studies/payment-retries",
       tags: ["Next.js", "TypeScript", "Supabase", "Mercado Pago", "SQL Server"],
       description:
         "The website and operations system around an online game. Players get a dashboard, forum, clan pages, a store and voice rooms. Staff get a back office for orders, support, moderation and content. I built it end to end, including the service that lets the site read and act on the game's databases.",
@@ -214,6 +221,7 @@ const projects: Record<SiteLanguage, Project[]> = {
       subtitle: "Site e sistema de operações para um jogo online",
       meta: "Desde maio de 2026",
       url: "https://www.aorustale.com/",
+      caseHref: "/case-studies/payment-retries",
       tags: ["Next.js", "TypeScript", "Supabase", "Mercado Pago", "SQL Server"],
       description:
         "O site e o sistema de operações à volta de um jogo online. Os jogadores têm dashboard, fórum, páginas de clãs, loja e salas de voz. A equipa tem um backoffice para pedidos, suporte, moderação e conteúdo. Construí tudo de ponta a ponta, incluindo o serviço que permite ao site ler e agir sobre as bases de dados do jogo.",
@@ -354,6 +362,7 @@ const projects: Record<SiteLanguage, Project[]> = {
       subtitle: "Sitio y sistema de operaciones para un juego online",
       meta: "Desde mayo de 2026",
       url: "https://www.aorustale.com/",
+      caseHref: "/case-studies/payment-retries",
       tags: ["Next.js", "TypeScript", "Supabase", "Mercado Pago", "SQL Server"],
       description:
         "El sitio web y el sistema de operaciones alrededor de un juego online. Los jugadores tienen panel, foro, páginas de clanes, tienda y salas de voz. El equipo tiene un backoffice para pedidos, soporte, moderación y contenido. Lo construí de punta a punta, incluido el servicio que permite al sitio leer y actuar sobre las bases de datos del juego.",
@@ -588,6 +597,7 @@ export function Projects() {
                   : project.details
               }
               ctaLabel={t.viewProject[language]}
+              caseLabel={t.caseStudy[language]}
             />
           </div>
         ))}

@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useLanguage } from "./language-provider"
 import { LanguageSwitcher } from "./language-switcher"
 import { ThemeToggle } from "./theme-toggle"
@@ -10,7 +11,8 @@ const links = {
 }
 
 // Stays at the top while scrolling. A solid background and one hairline, nothing
-// translucent, so text never shows through it.
+// translucent, so text never shows through it. The links point at the home page
+// so they also work from the case study pages.
 export function SiteHeader() {
   const { language } = useLanguage()
 
@@ -18,18 +20,18 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background">
       <div className="flex h-14 items-center justify-end gap-4 px-4 sm:px-6 md:px-12 lg:px-24">
         <nav className="hidden items-center gap-6 text-sm sm:flex" aria-label="Main">
-          <a
-            href="#projects"
+          <Link
+            href="/#projects"
             className="text-muted-foreground transition-colors duration-300 hover:text-foreground"
           >
             {links.projects[language]}
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/#contact"
             className="text-muted-foreground transition-colors duration-300 hover:text-foreground"
           >
             {links.contact[language]}
-          </a>
+          </Link>
         </nav>
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher />
