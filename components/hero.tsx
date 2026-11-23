@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useLanguage } from "./language-provider"
-import { LanguageSwitcher } from "./language-switcher"
-import { ThemeToggle } from "./theme-toggle"
 
 const translations = {
   role: {
@@ -31,11 +29,6 @@ const translations = {
     en: "See the work",
     "pt-PT": "Ver os projetos",
     es: "Ver los proyectos",
-  },
-  scroll: {
-    en: "Scroll",
-    "pt-PT": "Continuar",
-    es: "Continuar",
   },
 }
 
@@ -74,18 +67,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative flex min-h-screen flex-col justify-between overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 md:px-12 lg:px-24">
-      <header className="flex justify-end">
-        <div
-          className={`flex flex-wrap items-center gap-2 sm:gap-3 ${
-            mounted ? "animate-offset-slide delay-100" : "opacity-0"
-          }`}
-        >
-          <LanguageSwitcher />
-          <ThemeToggle />
-        </div>
-      </header>
-
+    <section className="relative flex min-h-[calc(100svh-3.5rem)] flex-col justify-center overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 md:px-12 lg:px-24">
       <div className="flex flex-1 flex-col justify-center py-16 sm:py-20 md:py-24">
         <div className="max-w-4xl">
           <h1
@@ -160,14 +142,6 @@ export function Hero() {
         </div>
       </div>
 
-      <div
-        className={`flex items-center gap-2 text-sm text-muted-foreground ${
-          mounted ? "animate-offset-slide delay-800" : "opacity-0"
-        }`}
-      >
-        <span>{t.scroll[language]}</span>
-        <span className="inline-block h-px w-4 bg-accent animate-pulse-line" />
-      </div>
     </section>
   )
 }

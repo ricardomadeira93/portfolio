@@ -64,8 +64,9 @@ export function Footer() {
 
   return (
     <footer
+      id="contact"
       ref={ref}
-      className="border-t border-border px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24"
+      className="scroll-mt-14 border-t border-border px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24"
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24">

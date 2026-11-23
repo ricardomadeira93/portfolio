@@ -563,7 +563,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24"
+      className="scroll-mt-14 border-t border-border px-4 py-20 sm:px-6 md:px-12 md:py-24 lg:px-24"
     >
       <div className="mb-16">
         <h2 className="text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">
